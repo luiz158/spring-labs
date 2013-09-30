@@ -12,8 +12,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-lab-01-start</module>
-        <module>spring-lab-01-solution</module>
+        <module>start</module>
+        <module>solution</module>
     </modules>
 
     <dependencies>
