@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        Configure test data source here - use common.sql.TestDataSourceFactory.
+        SQL scripts required to configure the test DB are located in commons module test resources under META-INF/sql.
+        The scripts are accessible from this modules classpath.
+    -->
+
+</beans>

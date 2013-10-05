@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="common.sql.TestDataSourceFactory">
+        <property name="schemaLocation" value="classpath:META-INF/sql/schema.sql" />
+        <property name="dataLocation" value="classpath:META-INF/sql/data.sql" />
+    </bean>
+
+</beans>

@@ -1,4 +1,4 @@
-package savings.service;
+package savings.model;
 
 import org.joda.money.Money;
 import org.joda.time.DateTime;
