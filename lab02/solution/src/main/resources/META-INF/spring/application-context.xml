@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountRepository" class="savings.repository.impl.JdbcAccountRepository">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="merchantRepository" class="savings.repository.impl.JdbcMerchantRepository">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="paybackRepository" class="savings.repository.impl.JdbcPaybackRepository">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="paybackBookKeeper" class="savings.service.impl.PaybackBookKeeperImpl">
+        <constructor-arg ref="accountRepository" />
+        <constructor-arg ref="merchantRepository" />
+        <constructor-arg ref="paybackRepository" />
+    </bean>
+
+</beans>

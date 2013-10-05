@@ -2,11 +2,15 @@ package savings.service.impl;
 
 import org.joda.money.Money;
 
-import savings.model.*;
+import savings.model.Account;
+import savings.model.AccountIncome;
+import savings.model.Merchant;
+import savings.model.PaybackConfirmation;
 import savings.repository.AccountRepository;
 import savings.repository.MerchantRepository;
 import savings.repository.PaybackRepository;
 import savings.service.PaybackBookKeeper;
+import savings.model.Purchase;
 
 public class PaybackBookKeeperImpl implements PaybackBookKeeper {
 
@@ -17,7 +21,7 @@ public class PaybackBookKeeperImpl implements PaybackBookKeeper {
     private final PaybackRepository paybackRepository;
 
     public PaybackBookKeeperImpl(AccountRepository accountRepository, MerchantRepository merchantRepository,
-                                 PaybackRepository paybackRepository) {
+            PaybackRepository paybackRepository) {
         this.accountRepository = accountRepository;
         this.merchantRepository = merchantRepository;
         this.paybackRepository = paybackRepository;
