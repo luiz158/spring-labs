@@ -5,6 +5,7 @@
     <!--
         Configure application classes here.
         You'll need savings.service.PaybackBookKeeper implementation along with all its dependencies.
+        Use auto-completion as much as possible (Ctrl+Space).
      -->
 
 </beans>
