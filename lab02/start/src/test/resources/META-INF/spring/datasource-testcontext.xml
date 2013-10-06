@@ -5,8 +5,8 @@
     <!--
         Configure test data source here - use common.sql.TestDataSourceFactory.
         SQL scripts required to configure the test DB are located in commons module test resources under META-INF/sql:
-         * schemaLocation - classpath:META-INF/sql/schema.sql
-         * dataLocation - classpath:META-INF/sql/data.sql
+         * schemaLocation - classpath:/META-INF/sql/schema.sql
+         * dataLocation - classpath:/META-INF/sql/data.sql
         The scripts are accessible from this modules classpath.
     -->
 

@@ -1,4 +1,4 @@
-package savings.repository;
+package savings;
 
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
@@ -7,9 +7,11 @@ import static org.joda.money.CurrencyUnit.EUR;
 import static org.joda.time.DateTime.now;
 
 import org.joda.money.Money;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import savings.model.PaybackConfirmation;
@@ -17,7 +19,7 @@ import savings.model.Purchase;
 import savings.service.PaybackBookKeeper;
 
 // FIXME 0: remove @Ignore to use the test
-@Ignore
+// @Ignore
 public class PaybackBookKeeperModuleTest {
 
     PaybackBookKeeper bookKeeper = null;
@@ -28,11 +30,20 @@ public class PaybackBookKeeperModuleTest {
 
     Purchase purchase = new Purchase(Money.of(EUR, 100L), creditCardNumber, merchantNumber, now());
 
+    ConfigurableApplicationContext applicationContext;
+
     @Before
     public void setUp() {
-        // FIXME 1: Instantiate an ApplicationContext and retrieve the bookKeeper from it.
-        // Use application-context.xml and datasource-testcontext.xml files for that.
-        bookKeeper = null;
+        applicationContext = new ClassPathXmlApplicationContext(
+                "classpath:/META-INF/spring/application-context.xml",
+                "classpath:/META-INF/spring/datasource-testcontext.xml"
+        );
+        bookKeeper = applicationContext.getBean("paybackBookKeeper", PaybackBookKeeper.class);
+    }
+
+    @After
+    public void tearDown() {
+        applicationContext.close();
     }
 
     @Test

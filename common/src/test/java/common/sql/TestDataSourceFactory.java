@@ -2,6 +2,7 @@ package common.sql;
 
 import static org.h2.util.IOUtils.getBufferedReader;
 import static org.h2.util.IOUtils.readStringAndClose;
+import static org.joda.time.DateTimeUtils.currentTimeMillis;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,23 +12,24 @@ import java.sql.Statement;
 import javax.sql.DataSource;
 
 import org.h2.Driver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 public class TestDataSourceFactory implements FactoryBean<DataSource> {
 
-    private Resource schemaLocation;
+    private static final Logger LOG = LoggerFactory.getLogger(TestDataSourceFactory.class);
 
-    private Resource dataLocation;
+    private final Resource schemaLocation;
+
+    private final Resource dataLocation;
 
     private DataSource dataSource;
 
-    public void setSchemaLocation(Resource schemaLocation) {
+    public TestDataSourceFactory(Resource schemaLocation, Resource dataLocation) {
         this.schemaLocation = schemaLocation;
-    }
-
-    public void setDataLocation(Resource dataLocation) {
         this.dataLocation = dataLocation;
     }
 
@@ -51,7 +53,7 @@ public class TestDataSourceFactory implements FactoryBean<DataSource> {
 
     private void createDataSource() throws IOException, SQLException {
         dataSource = new SimpleDriverDataSource(
-                Driver.load(), "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",  "sa", ""
+                Driver.load(), "jdbc:h2:mem:test" + currentTimeMillis() + ";DB_CLOSE_DELAY=-1",  "sa", ""
         );
 
         populateDataSource();
@@ -69,6 +71,7 @@ public class TestDataSourceFactory implements FactoryBean<DataSource> {
     }
 
     private void executeSql(Connection connection, String sql) throws IOException, SQLException {
+        LOG.debug("Executing script:\n" + sql);
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
         }

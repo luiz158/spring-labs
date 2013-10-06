@@ -45,7 +45,7 @@ create table PAYBACK (
 
 create sequence SEQ_PAYBACK_CONFIRMATION_NUMBER start with 1;
 
-alter table ACCOUNT_OBJECTIVE add constraint FK_ACCOUNT_BENEFICIARY
+alter table ACCOUNT_OBJECTIVE add constraint FK_ACCOUNT_OBJECTIVE
   foreign key (ACCOUNT_ID) references ACCOUNT(ID) on delete cascade;
 
 alter table ACCOUNT_CREDIT_CARD add constraint FK_ACCOUNT_CREDIT_CARD
