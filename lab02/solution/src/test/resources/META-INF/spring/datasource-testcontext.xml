@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="dataSource" class="common.sql.TestDataSourceFactory">
-        <property name="schemaLocation" value="classpath:META-INF/sql/schema.sql" />
-        <property name="dataLocation" value="classpath:META-INF/sql/data.sql" />
+        <constructor-arg name="schemaLocation" value="classpath:/META-INF/sql/schema.sql" />
+        <constructor-arg name="dataLocation" value="classpath:/META-INF/sql/data.sql" />
     </bean>
 
 </beans>
