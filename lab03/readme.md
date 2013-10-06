@@ -4,11 +4,11 @@ Topics
 --
 * How to use more compact XML configuration syntax with [`p`][1] and [`c`][2] namespaces.
 
-* How to implement your own bean [lifecycle][3] behaviours with [annotation configuration][4] utilizing
+* How to implement your own [bean lifecycle][3] behaviours with [annotation configuration][4] utilizing
   [`@PostConstruct`][6], [`@PreDestroy`][6].
 
-* How to modify Spring bean definition at runtime with [`BeanFactoryPostProcessor`][9],
-  [`PropertySourcesPlaceholderConfigurer`][10] and [`<context:property-placeholder />`][10].
+* How to modify Spring bean definition at runtime with [`BeanFactoryPostProcessor`][9] such as
+  [`PropertySourcesPlaceholderConfigurer`][10] via [`<context:property-placeholder />`][10].
 
 * How to apply custom custom configuration behaviours to Spring beans with [`@Required`][5] utilizing a
   [`BeanPostProcessor`][7] such as [`RequiredAnnotationBeanPostProcessor`][8].
