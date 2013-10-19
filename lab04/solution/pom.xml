@@ -10,4 +10,19 @@
 
     <artifactId>spring-lab-04-solution</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.training</groupId>
+            <artifactId>spring-lab-04-start</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.training</groupId>
+            <artifactId>spring-lab-04-start</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
 </project>

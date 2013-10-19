@@ -16,7 +16,7 @@ Instructions
 
 4. Fix `JdbcMerchantRepository` by providing appropriate policy identified by name among `PaybackPolices`.
 
-5. [Improve] `PaybackBookKeeperModuleTest` using supporting classes from [Spring Test Framework][1].
+5. [Improve][2] `PaybackBookKeeperModuleTest` using supporting classes from [Spring Test Framework][1].
 
 [Back to index](..)
 
