@@ -30,6 +30,8 @@ Instructions
 5. Utilize a [`ClassPathXmlApplicationContext`][3] in provided module test stub to fill in the set up logic.
    [Retrieve][4] beans for test from configured context.
 
+[Back to index](..)
+
  [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-basics
  [2]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-metadata
  [3]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-instantiation

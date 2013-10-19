@@ -26,6 +26,8 @@ Instructions
 
 5. See how to use [`@Required`][5] by following instructions is `application-context.xml`.
 
+[Back to index](..)
+
  [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-p-namespace
  [2]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-c-namespace
  [3]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-lifecycle

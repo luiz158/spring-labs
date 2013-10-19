@@ -18,5 +18,7 @@ Instructions
 
 5. [Improve] `PaybackBookKeeperModuleTest` using supporting classes from [Spring Test Framework][1].
 
+[Back to index](..)
+
  [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/testing.html
  [2]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/testing.html#integration-testing-goals
