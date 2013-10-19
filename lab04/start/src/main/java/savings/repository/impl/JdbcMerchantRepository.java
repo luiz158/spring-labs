@@ -67,6 +67,7 @@ public class JdbcMerchantRepository implements MerchantRepository {
     }
 
     private Merchant readMerchantFrom(ResultSet resultSet) throws SQLException {
+        // TODO #1 find a policy by name among provided PaybackPolices and pass it to Merchants constructor
         Merchant account = new Merchant(
                 resultSet.getString("NUMBER"),
                 resultSet.getString("NAME"),

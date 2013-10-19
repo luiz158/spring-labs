@@ -18,6 +18,8 @@ import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
 import savings.service.PaybackBookKeeper;
 
+// TODO #1 make this test extend from AbstractJUnit4SpringContextTests
+// TODO #2 configure ApplicationContext for this test using @ContextConfiguration and its locations attribute
 public class PaybackBookKeeperModuleTest {
 
     PaybackBookKeeper bookKeeper = null;
@@ -28,10 +30,12 @@ public class PaybackBookKeeperModuleTest {
 
     Purchase purchase = new Purchase(Money.of(EUR, 100L), creditCardNumber, merchantNumber, now());
 
+    // TODO #3 remove this field and use the one from super class that was configured for you
     ConfigurableApplicationContext applicationContext;
 
     @Before
     public void setUp() {
+        // TODO #4.1 remove manual configuration of ApplicationContext - the base class handles that now
         applicationContext = new ClassPathXmlApplicationContext(
                 "classpath:/META-INF/spring/application-context.xml",
                 "classpath:/META-INF/spring/datasource-testcontext.xml"
@@ -41,6 +45,7 @@ public class PaybackBookKeeperModuleTest {
 
     @After
     public void tearDown() {
+        // TODO #4.2 remove manual configuration of ApplicationContext - the base class handles that now
         applicationContext.close();
     }
 
