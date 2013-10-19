@@ -30,6 +30,7 @@ create table MERCHANT (
   NUMBER varchar(10) not null,
   NAME varchar(80) not null,
   PAYBACK double not null,
+  PAYBACK_POLICY varchar(10) not null,
   unique(NUMBER));
 
 create table PAYBACK (

@@ -15,17 +15,11 @@ public class Merchant extends Entity {
 
     private Percentage payback;
 
-    public Merchant(String number, String name) {
-        this(number, name, Percentage.zero());
-    }
-
+    // TODO #1 add a constructor argument of type PaybackPolicy - use 'change signature' refactoring and 'null' as default value
+    // TODO #2 assign the new argument to a new private field called 'paybackPolicy' - use IDE hints (Ctrl+1 in Eclipse)
     public Merchant(String number, String name, Percentage payback) {
         this.number = number;
         this.name = name;
-        this.payback = payback;
-    }
-
-    public void setPayback(Percentage payback) {
         this.payback = payback;
     }
 
@@ -42,6 +36,7 @@ public class Merchant extends Entity {
     }
 
     public Money calculatePaybackFor(Account account, Purchase purchase) {
+        // TODO #3 ask the policy if the payback is available; if yes, then return calculated amount; otherwise return zero
         return purchase.getAmount().multipliedBy(payback.asBigDecimal(), HALF_EVEN);
     }
 
