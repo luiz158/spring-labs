@@ -26,6 +26,6 @@ Instructions
 
 3. Use interface JavaDoc and provided unit tests stubs to implement `PaybackBookKeeperImpl` application logic.
 
-[Back to index](src/default)
+[Back to index](..)
 
  [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#overview-dependency-injection
