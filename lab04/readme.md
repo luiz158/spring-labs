@@ -1,4 +1,4 @@
-Lab 04 - basics of testing
+Lab 04 - testing basics
 ==
 Topics
 --
