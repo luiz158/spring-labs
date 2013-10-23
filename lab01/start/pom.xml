@@ -10,8 +10,4 @@
 
     <artifactId>spring-lab-01-start</artifactId>
 
-    <properties>
-        <skipTests>true</skipTests>
-    </properties>
-
 </project>

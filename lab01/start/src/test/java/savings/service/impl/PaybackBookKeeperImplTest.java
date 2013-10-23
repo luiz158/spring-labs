@@ -8,6 +8,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 import org.joda.money.Money;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -19,6 +20,8 @@ import savings.repository.MerchantRepository;
 import savings.repository.NotFoundException;
 import savings.repository.PaybackRepository;
 
+//FIXME 0: remove @Ignore to use the test
+@Ignore
 public class PaybackBookKeeperImplTest {
 
     AccountRepository accountRepository = mock(AccountRepository.class);

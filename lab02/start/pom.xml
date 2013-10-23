@@ -10,10 +10,6 @@
 
     <artifactId>spring-lab-02-start</artifactId>
 
-    <properties>
-        <skipTests>true</skipTests>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.h2database</groupId>
