@@ -12,5 +12,6 @@ Labs index:
  2. [Container Basics](lab02)
  3. [Bean Lifecycle](lab03)
  4. [Testing Basics](lab04)
+ 5. [Java-Based Configuration](lab05)
 
- [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/
+ [1]: http://docs.spring.io/spring/docs/3.2.5.RELEASE/spring-framework-reference/html/
