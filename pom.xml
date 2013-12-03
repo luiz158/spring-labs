@@ -3,7 +3,7 @@
 
     <groupId>org.training</groupId>
     <artifactId>spring-labs</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.2.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -29,6 +29,7 @@
         <module>lab02</module>
         <module>lab03</module>
         <module>lab04</module>
+        <module>lab05</module>
     </modules>
 
     <scm>
