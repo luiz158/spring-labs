@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.training</groupId>
         <artifactId>spring-lab-05</artifactId>
-        <version>0.3.0-SNAPSHOT</version>
+        <version>0.4.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>spring-lab-05-solution</artifactId>
