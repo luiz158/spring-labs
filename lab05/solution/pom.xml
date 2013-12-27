@@ -4,10 +4,25 @@
     <parent>
         <groupId>org.training</groupId>
         <artifactId>spring-lab-05</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>0.3.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>spring-lab-05-solution</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.training</groupId>
+            <artifactId>spring-lab-05-start</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.training</groupId>
+            <artifactId>spring-lab-05-start</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

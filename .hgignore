@@ -1,7 +1,0 @@
-(^|/)\.
-/target/
-/bin/
-/build/
-/gen/
-.*\.iml
-.*\.orig
