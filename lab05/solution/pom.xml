@@ -9,5 +9,20 @@
 
     <artifactId>spring-lab-05-solution</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.training</groupId>
+            <artifactId>spring-lab-05-start</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.training</groupId>
+            <artifactId>spring-lab-05-start</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
