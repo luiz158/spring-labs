@@ -279,6 +279,16 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>com.rimerosolutions.maven.plugins</groupId>
+                    <artifactId>wrapper-maven-plugin</artifactId>
+                    <version>0.0.1</version>
+                    <configuration>
+                        <wrapperScriptDirectory>${basedir}</wrapperScriptDirectory>
+                        <wrapperDirectory>${basedir}/.m2/wrapper</wrapperDirectory>
+                        <mavenVersion>3.1.1</mavenVersion>
+                   </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
