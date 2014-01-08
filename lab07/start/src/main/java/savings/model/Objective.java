@@ -38,7 +38,7 @@ public class Objective extends Entity {
     }
 
     public void credit(Money amount) {
-        savings.plus(amount);
+        savings = savings.plus(amount);
     }
 
     @Override

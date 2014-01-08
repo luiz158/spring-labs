@@ -31,6 +31,7 @@ public class PaybackBookKeeperImpl implements PaybackBookKeeper {
         this.paybackRepository = paybackRepository;
     }
 
+    // TODO #1 declare this method as transactional
     @Override
     public PaybackConfirmation registerPaybackFor(Purchase purchase) {
         Account account = accountRepository.findByCreditCard(purchase.getCreditCardNumber());

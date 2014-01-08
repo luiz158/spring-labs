@@ -88,5 +88,11 @@ public class JdbcAccountRepository implements AccountRepository {
 
     @Override
     public void update(Account account) {
+        String sql =
+                "update ACCOUNT_OBJECTIVE " +
+                "set SAVINGS = ?";
+        for (Objective objective : account.getObjectives()) {
+            jdbcTemplate.update(sql, objective.getSavings().getAmount());
+        }
     }
 }

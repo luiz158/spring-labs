@@ -1,13 +1,19 @@
 package savings.repository.impl;
 
+import static org.joda.money.CurrencyUnit.EUR;
 import static org.joda.time.DateTime.now;
 
 import java.sql.*;
+import java.util.Collections;
+import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +31,27 @@ public class JdbcPaybackRepository implements PaybackRepository {
     public JdbcPaybackRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    @Override
+    public List<PaybackConfirmation> findAllByAccountNumber(String accountNumber) {
+        String sql =
+                "select * " +
+                "from PAYBACK " +
+                "where ACCOUNT_NUMBER = ?";
+        return jdbcTemplate.query(sql, paybackConfirmationMapper, accountNumber);
+    }
+
+    private static final RowMapper<PaybackConfirmation> paybackConfirmationMapper = new RowMapper<PaybackConfirmation>() {
+        @Override
+        public PaybackConfirmation mapRow(ResultSet resultSet, int i) throws SQLException {
+            return new PaybackConfirmation(
+                    resultSet.getString("NUMBER"),
+                    new AccountIncome(
+                            resultSet.getString("ACCOUNT_NUMBER"),
+                            Money.of(EUR, resultSet.getBigDecimal("AMOUNT")),
+                            Collections.<AccountIncome.Distribution>emptySet()));
+        }
+    };
 
     @Override
     public PaybackConfirmation save(AccountIncome income, Purchase purchase) {
