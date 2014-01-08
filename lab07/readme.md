@@ -11,7 +11,7 @@ Instructions
 1. [Declare][4] `RepositoryPerformanceMonitor` as an `@Aspect`, define proper [pointcut][5]
     and an [around][6] [advice][7].
 
-2. [Enable @AspectJ support][8].
+2. [Enable @AspectJ support][8] in `RepositoryConfiguration`. Than run the tests and see the logs.
 
 3.
 

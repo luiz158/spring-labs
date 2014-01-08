@@ -1,7 +1,5 @@
 package savings.repository.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -9,19 +7,19 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import common.math.Percentage;
 import savings.model.Merchant;
 import savings.repository.MerchantRepository;
 
-// TODO #1 mark as repository component
 @Repository
 public class JdbcMerchantRepository implements MerchantRepository {
 
@@ -29,12 +27,11 @@ public class JdbcMerchantRepository implements MerchantRepository {
 
     private final Map<String, Merchant> cache = new HashMap<>();
 
-    private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
 
-    // TODO #2 use constructor dependency injection instead
     @Autowired
-    public JdbcMerchantRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public JdbcMerchantRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @PostConstruct
@@ -43,17 +40,8 @@ public class JdbcMerchantRepository implements MerchantRepository {
         String sql =
                 "select * " +
                 "from MERCHANT";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    Merchant merchant = readMerchantFrom(resultSet);
-                    cache.put(merchant.getNumber(), merchant);
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error in findByNumber!", e);
+        for (Merchant merchant : jdbcTemplate.query(sql, merchantMapper)) {
+            cache.put(merchant.getNumber(), merchant);
         }
     }
 
@@ -72,13 +60,16 @@ public class JdbcMerchantRepository implements MerchantRepository {
         return merchant;
     }
 
-    private Merchant readMerchantFrom(ResultSet resultSet) throws SQLException {
-        Merchant account = new Merchant(
-                resultSet.getString("NUMBER"),
-                resultSet.getString("NAME"),
-                new Percentage(resultSet.getBigDecimal("PAYBACK")),
-                PaybackPolices.valueOf(resultSet.getString("PAYBACK_POLICY").toUpperCase()));
-        account.setId(resultSet.getLong("ID"));
-        return account;
-    }
+    private static final RowMapper<Merchant> merchantMapper = new RowMapper<Merchant>() {
+        @Override
+        public Merchant mapRow(ResultSet resultSet, int i) throws SQLException {
+            Merchant merchant = new Merchant(
+                    resultSet.getString("NUMBER"),
+                    resultSet.getString("NAME"),
+                    new Percentage(resultSet.getBigDecimal("PAYBACK")),
+                    PaybackPolices.valueOf(resultSet.getString("PAYBACK_POLICY").toUpperCase()));
+            merchant.setId(resultSet.getLong("ID"));
+            return merchant;
+        }
+    };
 }

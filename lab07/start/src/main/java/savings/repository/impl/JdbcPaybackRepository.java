@@ -7,6 +7,8 @@ import java.sql.*;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.stereotype.Repository;
 
 import savings.model.AccountIncome;
@@ -17,11 +19,11 @@ import savings.repository.PaybackRepository;
 @Repository
 public class JdbcPaybackRepository implements PaybackRepository {
 
-    private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcPaybackRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public JdbcPaybackRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -29,31 +31,22 @@ public class JdbcPaybackRepository implements PaybackRepository {
         String sql =
                 "insert into PAYBACK (NUMBER, AMOUNT, DATE, ACCOUNT_NUMBER, MERCHANT_NUMBER, TRANSACTION_AMOUNT, TRANSACTION_DATE) " +
                 "values (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = dataSource.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            String number = nextConfirmationNumber(connection);
+        String number = nextConfirmationNumber();
+        jdbcTemplate.update(sql,
+                number,
+                income.getAmount().getAmount(),
+                new Date(now().toDate().getTime()),
+                income.getAccountNumber(),
+                purchase.getMerchantNumber(),
+                purchase.getAmount().getAmount(),
+                new Date(purchase.getDate().toDate().getTime()));
 
-            statement.setString(1, number);
-            statement.setBigDecimal(2, income.getAmount().getAmount());
-            statement.setDate(3, new Date(now().toDate().getTime()));
-            statement.setString(4, income.getAccountNumber());
-            statement.setString(5, purchase.getMerchantNumber());
-            statement.setBigDecimal(6, purchase.getAmount().getAmount());
-            statement.setDate(7, new Date(purchase.getDate().toDate().getTime()));
-
-            return new PaybackConfirmation(number, income);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error in save!", e);
-        }
+        return new PaybackConfirmation(number, income);
     }
 
-    private String nextConfirmationNumber(Connection connection) throws SQLException {
+    private String nextConfirmationNumber() {
         String sql = "select NEXTVAL('SEQ_PAYBACK_CONFIRMATION_NUMBER')";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-                ResultSet resultSet = statement.executeQuery()) {
-            resultSet.next();
-            return resultSet.getString(1);
-        }
+        return jdbcTemplate.queryForObject(sql, String.class);
     }
 }

@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import common.math.Percentage;
 import common.sql.TestDataSourceFactory;
@@ -22,7 +23,7 @@ public class JdbcMerchantRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        repository = new JdbcMerchantRepository(createDataSource());
+        repository = new JdbcMerchantRepository(new JdbcTemplate(createDataSource()));
         repository.populateCache();
     }
 
