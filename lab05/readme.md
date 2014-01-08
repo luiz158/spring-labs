@@ -21,8 +21,8 @@ Instructions
 
 [Back to index](..)
 
- [1]: http://docs.spring.io/spring/docs/3.2.5.RELEASE/spring-framework-reference/htmlsingle/#beans-annotation-config
- [2]: http://docs.spring.io/spring/docs/3.2.5.RELEASE/spring-framework-reference/htmlsingle/#beans-java
- [3]: http://docs.spring.io/spring/docs/3.2.5.RELEASE/spring-framework-reference/htmlsingle/#testcontext-ctx-management-javaconfig
- [4]: http://docs.spring.io/spring/docs/3.2.5.RELEASE/spring-framework-reference/htmlsingle/#beans-classpath-scanning
+ [1]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#beans-annotation-config
+ [2]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#beans-java
+ [3]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#testcontext-ctx-management-javaconfig
+ [4]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#beans-classpath-scanning
  [5]: http://spring.io/blog/2011/02/15/spring-3-1-m1-unified-property-management/

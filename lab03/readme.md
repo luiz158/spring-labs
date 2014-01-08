@@ -28,13 +28,13 @@ Instructions
 
 [Back to index](..)
 
- [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-p-namespace
- [2]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-c-namespace
- [3]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-lifecycle
- [4]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-annotation-config
- [5]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-required-annotation
- [6]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-postconstruct-and-predestroy-annotations
- [7]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-bpp
- [8]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-bpp-examples-rabpp
- [9]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors
- [10]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-placeholderconfigurer
+ [1]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-p-namespace
+ [2]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-c-namespace
+ [3]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-lifecycle
+ [4]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-annotation-config
+ [5]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-required-annotation
+ [6]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-postconstruct-and-predestroy-annotations
+ [7]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-bpp
+ [8]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-bpp-examples-rabpp
+ [9]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors
+ [10]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-placeholderconfigurer

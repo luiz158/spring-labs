@@ -28,4 +28,4 @@ Instructions
 
 [Back to index](..)
 
- [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#overview-dependency-injection
+ [1]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#overview-dependency-injection
