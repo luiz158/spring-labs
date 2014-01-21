@@ -32,12 +32,12 @@ Instructions
 
 [Back to index](..)
 
- [1]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-basics
- [2]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-metadata
- [3]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-instantiation
- [4]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-client
- [5]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-beanname
- [6]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-class-ctor
- [7]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-constructor-injection
- [8]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-setter-injection
- [9]: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factorybean
+ [1]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-basics
+ [2]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-metadata
+ [3]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-instantiation
+ [4]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-client
+ [5]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-beanname
+ [6]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-class-ctor
+ [7]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-constructor-injection
+ [8]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-setter-injection
+ [9]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factorybean

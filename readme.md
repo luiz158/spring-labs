@@ -31,6 +31,8 @@ Labs index:
  3. [Bean Lifecycle](lab03)
  4. [Testing Basics](lab04)
  5. [Java-Based Configuration](lab05)
+ 6. [Rebooted](lab06)
+ 7. [Transactions and other Cross-Cutting Concerns](lab07)
 
  [1]: http://spring.io
  [2]: http://warszawa.jug.pl
