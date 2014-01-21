@@ -30,7 +30,7 @@ import savings.repository.PaybackRepository;
 import savings.service.PaybackBookKeeper;
 
 // TODO #0 remove @Ignore to enable the test
-//@Ignore
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class PaybackBookKeeperTransactionTest {
