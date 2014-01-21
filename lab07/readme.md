@@ -9,7 +9,7 @@ Topics
 Instructions
 --
 1. [Declare][4] `RepositoryPerformanceMonitor` as an `@Aspect`, define proper [pointcut][5]
-    and [around][6] [advice][7].
+    and [around][6] [advice][7]. Use `RepositoryPerformanceMonitorTest` to test your aspect.
 
 2. [Enable @AspectJ support][8] in `RepositoryConfiguration`. Than run the tests and see the logs.
 

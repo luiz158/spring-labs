@@ -42,7 +42,7 @@ public class PaybackBookKeeperModuleTest {
     @Configuration
     @Import({RepositoryConfiguration.class, ServiceConfiguration.class})
     @PropertySource("classpath:META-INF/application.properties")
-    static class Config {
+    public static class Config {
 
         @Value("classpath:/META-INF/sql/schema.sql")
         private Resource schemaLocation;

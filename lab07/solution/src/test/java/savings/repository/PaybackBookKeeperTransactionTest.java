@@ -1,4 +1,4 @@
-package savings;
+package savings.repository;
 
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
@@ -23,15 +23,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import savings.PaybackBookKeeperModuleTest;
 import savings.model.AccountIncome;
 import savings.model.Objective;
 import savings.model.Purchase;
-import savings.repository.AccountRepository;
-import savings.repository.PaybackRepository;
+import savings.repository.impl.JdbcPaybackRepository;
 import savings.service.PaybackBookKeeper;
 
 // TODO #0 remove @Ignore to enable the test
-@Ignore
+// @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class PaybackBookKeeperTransactionTest {
@@ -40,6 +40,7 @@ public class PaybackBookKeeperTransactionTest {
     static class Config extends PaybackBookKeeperModuleTest.Config {
 
         @Bean
+        // this bean definition overrides JdbcPaybackRepository with a mock
         public PaybackRepository paybackRepository() {
             return mock(PaybackRepository.class);
         }
