@@ -23,7 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //TODO #1 remove @Ignore to run test
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ControllerConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class})
+@ContextConfiguration(classes = {ControllerConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class
+,DataSourceConfig.class})
 @WebAppConfiguration
 public class SpringLabsControllerTest {
     @Autowired
