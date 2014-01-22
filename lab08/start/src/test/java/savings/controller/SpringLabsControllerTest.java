@@ -20,13 +20,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-//TODO #1 remove @Ignore to run test
+
+//TODO #0 remove @Ignore to run test
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ControllerConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class
 ,DataSourceConfig.class})
 @WebAppConfiguration
 public class SpringLabsControllerTest {
+
     @Autowired
     private WebApplicationContext wac;
 

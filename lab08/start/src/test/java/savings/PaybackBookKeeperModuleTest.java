@@ -36,7 +36,6 @@ import savings.repository.impl.RepositoryConfiguration;
 import savings.service.PaybackBookKeeper;
 import savings.service.impl.ServiceConfiguration;
 
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class PaybackBookKeeperModuleTest {

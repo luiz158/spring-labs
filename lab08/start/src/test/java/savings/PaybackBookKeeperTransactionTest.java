@@ -30,8 +30,6 @@ import savings.repository.AccountRepository;
 import savings.repository.PaybackRepository;
 import savings.service.PaybackBookKeeper;
 
-
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class PaybackBookKeeperTransactionTest {

@@ -1,28 +1,22 @@
 package savings.repository.impl;
 
-import common.math.Percentage;
-import common.sql.TestDataSourceFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import savings.model.Merchant;
-
-import javax.sql.DataSource;
-
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
 import static org.fest.assertions.Assertions.assertThat;
 
-@Ignore
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+import javax.sql.DataSource;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import common.math.Percentage;
+import common.sql.TestDataSourceFactory;
+import savings.model.Merchant;
+
 public class JdbcMerchantRepositoryTest {
 
     JdbcMerchantRepository repository;
