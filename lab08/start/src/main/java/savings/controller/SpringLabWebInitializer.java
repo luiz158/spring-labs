@@ -7,7 +7,7 @@ import savings.service.impl.ServiceConfiguration;
 public class SpringLabWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{ServiceConfiguration.class, RepositoryConfiguration.class};
+        return new Class<?>[]{DataSourceConfig.class, ServiceConfiguration.class, RepositoryConfiguration.class};
     }
 
     @Override

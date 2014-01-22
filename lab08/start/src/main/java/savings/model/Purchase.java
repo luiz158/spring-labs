@@ -42,6 +42,22 @@ public class Purchase {
         return date;
     }
 
+    public void setAmount(Money amount) {
+        this.amount = amount;
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+
+    public void setMerchantNumber(String merchantNumber) {
+        this.merchantNumber = merchantNumber;
+    }
+
+    public void setDate(DateTime date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

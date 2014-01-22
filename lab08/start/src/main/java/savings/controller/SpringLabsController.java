@@ -1,5 +1,8 @@
 package savings.controller;
 
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import savings.model.Account;
@@ -37,6 +40,8 @@ public class SpringLabsController {
     //TODO #4 make purchase a model attribute parameter
     public ModelAndView postForm(Purchase purchase) {
         ModelAndView modelAndView = new ModelAndView("confirmation");
+        purchase.setAmount(Money.of(CurrencyUnit.EUR, 100));
+        purchase.setDate(DateTime.now());
         PaybackConfirmation paybackConfirmation = paybackBookKeeper.registerPaybackFor(purchase);
         modelAndView.addObject("paybackConfirmation", paybackConfirmation);
         return modelAndView;

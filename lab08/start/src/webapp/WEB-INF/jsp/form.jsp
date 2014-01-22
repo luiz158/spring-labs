@@ -4,12 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-Form:
+Form:<br/>
 <form:form method="POST"
-           action="${pageContext.request.contextPath}/paybook/new"
+           action="${pageContext.request.contextPath}/springlabs/purchase/new"
            commandName="purchase">
-    amount: <form:input path="amount"/> <br/>
     creditCardNumber: <form:input path="creditCardNumber"/> <br/>
     merchantNumber: <form:input path="merchantNumber"/> <br/>
-    date: <form:input path="date"/> <br/>
     </form:form>

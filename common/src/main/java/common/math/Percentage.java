@@ -1,14 +1,20 @@
 package common.math;
 
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonMethod;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@JsonAutoDetect(value = JsonMethod.NONE)
 public class Percentage implements Serializable {
 
     private static final BigDecimal ONE_HUNDRED = new BigDecimal("100");
 
     private static final BigDecimal ONE_HUNDREDTH = new BigDecimal("0.01");
 
+    @JsonProperty
     private BigDecimal value;
 
     public Percentage(BigDecimal value) {

@@ -4,24 +4,26 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import savings.controller.ControllerConfiguration;
 import savings.repository.impl.RepositoryConfiguration;
 import savings.service.impl.ServiceConfiguration;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ControllerConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class})
+@ContextConfiguration(classes = {ControllerConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class,DataSourceConfig.class})
 @WebAppConfiguration
+@PropertySource("classpath:META-INF/application.properties")
 public class SpringLabsControllerTest {
     @Autowired
     private WebApplicationContext wac;
@@ -42,24 +44,40 @@ public class SpringLabsControllerTest {
 
     @Test
     public void shouldPostForm() throws Exception {
-        mockMvc.perform(post("/springlabs/purchase/new"))
+        mockMvc.perform(post("/springlabs/purchase/new")
+                .param("creditCardNumber", "1234123412341234")
+                .param("merchantNumber", "1234567890"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("form"));
+                .andExpect(view().name("confirmation"));
     }
 
     @Test
     public void shouldGetMerchantByNumber() throws Exception {
         mockMvc.perform(get("/springlabs/merchant").param("merchantNumber", "1234567890"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.number", is("1234567890")))
                 .andExpect(jsonPath("$.name", is("Guns & Bombs")));
     }
 
     @Test
+    public void shouldGet404WhenRequestingMerchantByNumber() throws Exception {
+        mockMvc.perform(get("/springlabs/merchant").param("merchantNumber", "36363"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void shouldGetAccountByCreditCard() throws Exception {
         mockMvc.perform(get("/springlabs/account/1234123412341234"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.number", is("123456789")))
                 .andExpect(jsonPath("$.name", is("Jane & John Smith")));
+    }
+
+    @Test
+    public void shouldGet404WhenRequetsingAccountByCreditCard() throws Exception {
+        mockMvc.perform(get("/springlabs/account/63363"))
+                .andExpect(status().isNotFound());
     }
 }

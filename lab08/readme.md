@@ -27,7 +27,7 @@ Instructions
 
  6. [Map SpringLabsController#getAccountByCreditCard(creditCard) to url '/springlabs/account/{creditCard}' and request method GET ][9]and [bind path variable {creditCard} to method parameter][12] and [return object as JSON][4]
 
-
+ 7. [Add new test to SpringLabsControllerTest named shouldGetForm() that will check if GET request for 'springlabs/purchase/new/' will return 200 (OK) and view named 'form'][13]
 
 [Back to index](..)
 
@@ -43,4 +43,5 @@ Instructions
  [10]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#mvc-ann-modelattrib-method-args
  [11]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#mvc-ann-requestparam
  [12]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#mvc-ann-requestmapping-uri-templates
+ [13]: http://docs.spring.io/spring/docs/3.2.6.RELEASE/spring-framework-reference/htmlsingle/#spring-mvc-test-server
 
