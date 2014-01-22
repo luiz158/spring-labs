@@ -7,6 +7,7 @@
         <artifactId>spring-lab-08</artifactId>
         <version>0.8.0-SNAPSHOT</version>
     </parent>
+
     <packaging>war</packaging>
     <artifactId>spring-lab-08-solution</artifactId>
 
@@ -15,9 +16,8 @@
             <groupId>org.training</groupId>
             <artifactId>spring-lab-08-start</artifactId>
             <version>${project.version}</version>
-            <type>test-jar</type>
-            <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -37,6 +37,13 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.training</groupId>
+            <artifactId>spring-lab-08-start</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>

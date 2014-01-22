@@ -1,5 +1,7 @@
 package savings.service;
 
+import savings.model.Account;
+import savings.model.Merchant;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
 
@@ -15,4 +17,8 @@ public interface PaybackBookKeeper {
      * @return confirmation of registered payback.
      */
     PaybackConfirmation registerPaybackFor(Purchase purchase);
+
+    Merchant merchantByNumber(String merchantNumber);
+
+    Account accountByCreditCard(String creditCardNumber);
 }

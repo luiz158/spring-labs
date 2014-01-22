@@ -2,7 +2,6 @@ package savings.model;
 
 import org.joda.money.Money;
 import org.joda.time.DateTime;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Purchase {
 
@@ -12,7 +11,6 @@ public class Purchase {
 
     private String merchantNumber;
 
-    @DateTimeFormat()
     private DateTime date;
 
     public Purchase(Money amount, String creditCardNumber, String merchantNumber, DateTime date) {
@@ -20,10 +18,6 @@ public class Purchase {
         this.creditCardNumber = creditCardNumber;
         this.merchantNumber = merchantNumber;
         this.date = date;
-    }
-
-    public Purchase() {
-
     }
 
     public Money getAmount() {
@@ -40,22 +34,6 @@ public class Purchase {
 
     public DateTime getDate() {
         return date;
-    }
-
-    public void setAmount(Money amount) {
-        this.amount = amount;
-    }
-
-    public void setCreditCardNumber(String creditCardNumber) {
-        this.creditCardNumber = creditCardNumber;
-    }
-
-    public void setMerchantNumber(String merchantNumber) {
-        this.merchantNumber = merchantNumber;
-    }
-
-    public void setDate(DateTime date) {
-        this.date = date;
     }
 
     @Override

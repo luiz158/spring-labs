@@ -37,6 +37,10 @@ public class Merchant extends Entity {
         return payback;
     }
 
+    public PaybackPolicy getPaybackPolicy() {
+        return paybackPolicy;
+    }
+
     public Money calculatePaybackFor(Account account, Purchase purchase) {
         if (paybackPolicy.isEligible(account, purchase)) {
             return purchase.getAmount().multipliedBy(payback.asBigDecimal(), HALF_EVEN);

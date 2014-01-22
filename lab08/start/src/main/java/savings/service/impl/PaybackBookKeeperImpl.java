@@ -1,8 +1,11 @@
 package savings.service.impl;
 
+import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
+
 import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import savings.model.Account;
@@ -35,11 +38,23 @@ public class PaybackBookKeeperImpl implements PaybackBookKeeper {
     @Override
     @Transactional
     public PaybackConfirmation registerPaybackFor(Purchase purchase) {
-        Account account = accountRepository.findByCreditCard(purchase.getCreditCardNumber());
-        Merchant merchant = merchantRepository.findByNumber(purchase.getMerchantNumber());
+        Account account = accountByCreditCard(purchase.getCreditCardNumber());
+        Merchant merchant = merchantByNumber(purchase.getMerchantNumber());
         Money paybackAmount = merchant.calculatePaybackFor(account, purchase);
         AccountIncome income = account.addPayback(paybackAmount);
         accountRepository.update(account);
         return paybackRepository.save(income, purchase);
+    }
+
+    @Override
+    @Transactional(propagation = SUPPORTS, readOnly = true)
+    public Merchant merchantByNumber(String merchantNumber) {
+        return merchantRepository.findByNumber(merchantNumber);
+    }
+
+    @Override
+    @Transactional(propagation = SUPPORTS, readOnly = true)
+    public Account accountByCreditCard(String creditCardNumber) {
+        return accountRepository.findByCreditCard(creditCardNumber);
     }
 }
