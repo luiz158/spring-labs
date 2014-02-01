@@ -22,6 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import savings.repository.AccountRepository;
+import savings.repository.impl.RepositoryPerformanceMonitor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration

@@ -1,5 +1,8 @@
 package savings.model;
 
+import static java.util.Arrays.asList;
+
+import java.util.Arrays;
 import java.util.Set;
 
 import org.joda.money.Money;
@@ -12,9 +15,12 @@ public class AccountIncome {
 
     private Money amount;
 
-    private Set<Distribution> distributions;
+    private Iterable<Distribution> distributions;
 
-    public AccountIncome(String accountNumber, Money amount, Set<Distribution> distributions) {
+    public AccountIncome(String accountNumber, Money amount, Distribution...distributions) {
+        this(accountNumber, amount, asList(distributions));
+    }
+    public AccountIncome(String accountNumber, Money amount, Iterable<Distribution> distributions) {
         this.accountNumber = accountNumber;
         this.amount = amount;
         this.distributions = distributions;
@@ -28,7 +34,7 @@ public class AccountIncome {
         return amount;
     }
 
-    public Set<Distribution> getDistributions() {
+    public Iterable<Distribution> getDistributions() {
         return distributions;
     }
 
@@ -49,7 +55,14 @@ public class AccountIncome {
 
         private Percentage allocation;
 
-        private Money totalSavings ;
+        private Money totalSavings;
+
+        public Distribution(Objective objective, Money amount) {
+            this.objective = objective.getName();
+            this.amount = amount;
+            this.allocation = objective.getAllocation();
+            this.totalSavings = objective.getSavings();
+        }
 
         public Distribution(String objective, Money amount, Percentage allocation, Money totalSavings) {
             this.objective = objective;

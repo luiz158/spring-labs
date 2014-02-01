@@ -4,9 +4,11 @@ import static common.math.Percentage.oneHundred;
 import static common.math.Percentage.zero;
 import static java.math.BigDecimal.ONE;
 import static java.math.RoundingMode.HALF_EVEN;
+import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,7 +50,11 @@ public class Account extends Entity {
     }
 
     public Account withObjective(Objective objective) {
-        objectives.add(objective);
+        return withObjectives(objective);
+    }
+
+    public Account withObjectives(Objective...objective) {
+        objectives.addAll(asList(objective));
         return this;
     }
 

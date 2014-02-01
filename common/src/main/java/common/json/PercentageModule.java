@@ -1,4 +1,4 @@
-package common.math;
+package common.json;
 
 import java.io.IOException;
 
@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
+import common.math.Percentage;
 
 public class PercentageModule extends SimpleModule {
 

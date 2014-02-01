@@ -1,10 +1,12 @@
-package common.math;
+package common.json;
 
 import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import common.json.PercentageModule;
+import common.math.Percentage;
 
 public class PercentageModuleTest {
 

@@ -3,6 +3,8 @@ package savings.repository.impl;
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
 import static org.fest.assertions.Assertions.assertThat;
+import static savings.PaybackFixture.merchant;
+import static savings.PaybackFixture.merchantNumber;
 
 import javax.sql.DataSource;
 
@@ -15,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import common.math.Percentage;
 import common.sql.TestDataSourceFactory;
+import savings.PaybackFixture;
 import savings.model.Merchant;
 
 public class JdbcMerchantRepositoryTest {
@@ -41,12 +44,12 @@ public class JdbcMerchantRepositoryTest {
 
     @Test
     public void shouldFindMerchantByNumber() {
-        Merchant merchant = repository.findByNumber("1234567890");
+        Merchant merchant = repository.findByNumber(merchantNumber);
 
         assertThat(merchant).isNotNull();
-        assertThat(merchant.getNumber()).isEqualTo("1234567890");
-        assertThat(merchant.getName()).isEqualTo("Guns & Bombs");
-        assertThat(merchant.getPayback()).isEqualTo(Percentage.of("6%"));
+        assertThat(merchant.getNumber()).isEqualTo(merchantNumber);
+        assertThat(merchant.getName()).isEqualTo(merchant().getName());
+        assertThat(merchant.getPayback()).isEqualTo(merchant().getPayback());
     }
 
     @Test

@@ -13,6 +13,10 @@ public class Purchase {
 
     private DateTime date;
 
+    protected Purchase() {
+        // required for mapping frameworks
+    }
+
     public Purchase(Money amount, String creditCardNumber, String merchantNumber, DateTime date) {
         this.amount = amount;
         this.creditCardNumber = creditCardNumber;
