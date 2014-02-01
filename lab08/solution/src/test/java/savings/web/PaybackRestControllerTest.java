@@ -13,7 +13,6 @@ import static savings.PaybackFixture.purchaseJson;
 import static savings.web.impl.WebConfiguration.buildJsonMessageConverter;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -29,7 +28,7 @@ import savings.web.impl.PaybackRestController;
  * Notice that you do _not_ need a Spring ApplicationContext to test MVC controllers using MockMvc.
  */
 // TODO #0 remove @Ignore to run test
-@Ignore
+// @Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class PaybackRestControllerTest {
 

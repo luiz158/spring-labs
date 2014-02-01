@@ -13,7 +13,7 @@
 
     <modules>
         <module>start</module>
-        <!--<module>solution</module>-->
+        <module>solution</module>
     </modules>
 
     <dependencies>

@@ -29,7 +29,6 @@
 
     <modules>
         <module>common</module>
-        <module>common-web</module>
         <module>lab01</module>
         <module>lab02</module>
         <module>lab03</module>
@@ -114,6 +113,7 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>3.0.1</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -124,6 +124,7 @@
                 <groupId>javax.servlet.jsp</groupId>
                 <artifactId>jsp-api</artifactId>
                 <version>2.1</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>
@@ -250,12 +251,6 @@
                 <type>test-jar</type>
                 <version>${project.version}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.training</groupId>
-                <artifactId>spring-labs-common-web</artifactId>
-                <type>pom</type>
-                <version>${project.version}</version>
             </dependency>
 
             <!-- COMPILE DEPENDENCIES END -->

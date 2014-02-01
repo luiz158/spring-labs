@@ -23,10 +23,16 @@ import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
 public class MoneyModule extends SimpleModule {
 
     public static String getAsString(Money money) {
+        if (money == null) {
+            return null;
+        }
         return money.getAmount().toString() + " " + money.getCurrencyUnit().toString();
     }
 
     public static Money getAsMoney(String string) {
+        if (string == null) {
+            return null;
+        }
         String[] split = string.split(" ");
         return Money.of(CurrencyUnit.of(split[1]), parseBigDecimal(split[0]));
     }
