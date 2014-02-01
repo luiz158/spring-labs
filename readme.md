@@ -33,6 +33,7 @@ Labs index:
  5. [Java-Based Configuration](lab05)
  6. [Rebooted](lab06)
  7. [Transactions and other Cross-Cutting Concerns](lab07)
+ 8. [Introduction to Spring MVC](lab08)
 
  [1]: http://spring.io
  [2]: http://warszawa.jug.pl
