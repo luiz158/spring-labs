@@ -8,23 +8,42 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import org.joda.money.Money;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import common.math.Percentage;
-import common.model.Entity;
 import savings.model.AccountIncome.Distribution;
 
-public class Account extends Entity {
+@Entity
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = "number")
+})
+public class Account extends AbstractPersistable<Long> {
 
     private String number;
 
     private String name;
 
+    @OneToMany
+    @JoinColumn(name = "account_id")
+    private Set<CreditCard> creditCards = new HashSet<>();
+
+    @OneToMany
+    @JoinColumn(name = "account_id")
     private Set<Objective> objectives = new HashSet<>();
+
+    protected Account() {
+        // required for mapping frameworks
+    }
 
     public Account(String number, String name) {
         this.number = number;
@@ -64,6 +83,10 @@ public class Account extends Entity {
             total = total.add(objective.getAllocation());
         }
         return total.equals(oneHundred());
+    }
+
+    public Set<CreditCard> getCreditCards() {
+        return creditCards;
     }
 
     public Set<Objective> getObjectives() {

@@ -1,0 +1,33 @@
+[
+    {
+        "_class": "savings.model.Account",
+        "number": "123456789",
+        "name": "Jane & John Smith"
+    },
+    {
+        "_class": "savings.model.CreditCard",
+        "accountId": 1,
+        "number": "1234123412341234"
+    },
+    {
+        "_class": "savings.model.Objective",
+        "accountId": 1,
+        "name": "Glock",
+        "allocation": "50%",
+        "savings": "0.00 EUR"
+    },
+    {
+        "_class": "savings.model.Objective",
+        "accountId": 1,
+        "name": "M60",
+        "allocation": "50%",
+        "savings": "0.00 EUR"
+    },
+    {
+        "_class": "savings.model.Merchant",
+        "number": "1234567890",
+        "name": "Guns & Bombs",
+        "payback": "6%",
+        "paybackPolicy": "ALWAYS"
+    }
+]

@@ -1,18 +1,25 @@
 package savings.repository.impl;
 
-import com.jolbox.bonecp.BoneCPDataSource;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.hibernate.ejb.HibernatePersistence;
-import org.springframework.context.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import javax.sql.DataSource;
-import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackageClasses = RepositoryConfiguration.class, excludeFilters = {
@@ -20,40 +27,30 @@ import java.util.Properties;
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
 })
 @EnableAspectJAutoProxy
-@EnableJpaRepositories(basePackages = {"savings.model.workshop"})
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = { "savings.repository" })
 public class RepositoryConfiguration {
 
-    @Bean
-    public DataSource dataSource() {
-        BoneCPDataSource dataSource = new BoneCPDataSource();
-        dataSource.setDriverClass("org.hsqldb.jdbc.JDBCDriver");
-        dataSource.setJdbcUrl("jdbc:hsqldb:file:/home/jnb/workspace/spring/springStarterTestDb");
-        dataSource.setUsername("SA");
-        dataSource.setPassword("");
-        return dataSource;
-    }
+    @Autowired
+    private DataSource dataSource;
 
     @Bean
-    public JpaTransactionManager transactionManager() throws ClassNotFoundException {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setJpaDialect(new HibernateJpaDialect());
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-        return transactionManager;
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource);
     }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws ClassNotFoundException {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
-        entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("savings.model.workshop");
+        entityManagerFactoryBean.setDataSource(dataSource);
+        entityManagerFactoryBean.setPackagesToScan("savings.model");
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
 
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        hibernateJpaVendorAdapter.setDatabase(Database.HSQL);
+        hibernateJpaVendorAdapter.setDatabase(Database.H2);
         hibernateJpaVendorAdapter.setGenerateDdl(true);
-        hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.HSQLDialect");
+        hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
         hibernateJpaVendorAdapter.setShowSql(true);
         entityManagerFactoryBean.setJpaVendorAdapter(hibernateJpaVendorAdapter);
 
@@ -64,5 +61,11 @@ public class RepositoryConfiguration {
         return entityManagerFactoryBean;
     }
 
-
+    @Bean
+    public PlatformTransactionManager transactionManager() throws ClassNotFoundException {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setJpaDialect(new HibernateJpaDialect());
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return transactionManager;
+    }
 }

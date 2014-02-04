@@ -4,6 +4,10 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import common.db.EmbeddedDatabaseConfiguration;
+import common.db.LocalDatabaseConfiguration;
+import common.json.JsonMapperConfiguration;
 import savings.repository.impl.RepositoryConfiguration;
 import savings.service.impl.ServiceConfiguration;
 import savings.web.impl.WebConfiguration;
@@ -29,6 +33,8 @@ public class WebAppInitializer implements WebApplicationInitializer {
          * Alternatively we can use {@link AnnotationConfigWebApplicationContext#scan(String...)} method.
          */
         rootContext.register(
+                JsonMapperConfiguration.class,
+                LocalDatabaseConfiguration.class,
                 RepositoryConfiguration.class,
                 ServiceConfiguration.class,
                 WebConfiguration.class);

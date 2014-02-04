@@ -1,5 +1,6 @@
 package savings.web;
 
+import static common.json.JsonMapperConfiguration.buildObjectMapper;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -13,7 +14,6 @@ import static savings.PaybackFixture.purchaseJson;
 import static savings.web.impl.WebConfiguration.buildJsonMessageConverter;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,6 +21,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import common.json.JsonMapperConfiguration;
 import savings.model.Purchase;
 import savings.service.PaybackBookKeeper;
 import savings.web.impl.PaybackRestController;
@@ -28,8 +29,6 @@ import savings.web.impl.PaybackRestController;
 /**
  * Notice that you do _not_ need a Spring ApplicationContext to test MVC controllers using MockMvc.
  */
-// TODO #0 remove @Ignore to run test
-@Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class PaybackRestControllerTest {
 
@@ -44,7 +43,7 @@ public class PaybackRestControllerTest {
     @Before
     public void setUp() throws Exception {
         mockMvc = standaloneSetup(controller)
-                .setMessageConverters(buildJsonMessageConverter())
+                .setMessageConverters(buildJsonMessageConverter(buildObjectMapper()))
                 .build();
     }
 

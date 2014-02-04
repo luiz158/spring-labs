@@ -1,5 +1,6 @@
 package savings.model;
 
+import static common.json.JsonMapperConfiguration.buildObjectMapper;
 import static org.fest.assertions.Assertions.assertThat;
 import static savings.PaybackFixture.purchase;
 import static savings.PaybackFixture.purchaseJson;
@@ -7,11 +8,12 @@ import static savings.PaybackFixture.purchaseJson;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import common.json.JsonMapperConfiguration;
 import savings.web.impl.WebConfiguration;
 
 public class PurchaseMappingTest {
 
-    ObjectMapper objectMapper = WebConfiguration.buildObjectMapper();
+    ObjectMapper objectMapper = buildObjectMapper();
 
     @Test
     public void shouldName() throws Exception {

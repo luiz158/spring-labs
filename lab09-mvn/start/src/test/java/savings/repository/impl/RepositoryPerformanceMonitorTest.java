@@ -11,7 +11,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.spi.LoggingEvent;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import savings.repository.AccountRepository;
-import savings.repository.impl.RepositoryPerformanceMonitor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -60,12 +58,12 @@ public class RepositoryPerformanceMonitorTest {
 
     @Test
     public void shouldLogPerformance() throws Exception {
-        repository.findByCreditCard("123456789");
+        repository.findByCreditCardsNumber("123456789");
 
         assertThat(appender.events).hasSize(1);
         assertThat(appender.events.get(0).getLevel()).isEqualTo(Level.INFO);
         assertThat((String) appender.events.get(0).getMessage())
-                .startsWith("StopWatch 'AccountRepository.findByCreditCard': running time (millis) = ");
+                .startsWith("StopWatch 'AccountRepository.findByCreditCardsNumber': running time (millis) = ");
     }
 
     static class TestAppender extends AppenderSkeleton {

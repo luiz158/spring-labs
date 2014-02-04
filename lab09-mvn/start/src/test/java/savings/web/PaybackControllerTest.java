@@ -11,7 +11,6 @@ import static savings.PaybackFixture.creditCardNumber;
 import static savings.PaybackFixture.merchantNumber;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,25 +19,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
+import common.json.JsonMapperConfiguration;
 import savings.service.PaybackBookKeeper;
 import savings.web.impl.WebConfiguration;
 
 /**
  * This test presents how to test MVC controllers logic utilizing minimized Spring ApplicationContext.
  */
-// TODO #0 remove @Ignore to run test
-// TODO #1 mark this test with appropriate annotation to indicate that a {@link WebApplicationContext} should be loaded
-// instead of a regular one
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
+@WebAppConfiguration
 public class PaybackControllerTest {
 
     @Configuration
-    @Import(WebConfiguration.class)
+    @Import({ JsonMapperConfiguration.class, WebConfiguration.class })
     static class Config {
 
         @Bean

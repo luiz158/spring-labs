@@ -31,7 +31,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import common.db.LocalDatabaseConfiguration;
 import common.sql.TestDataSourceFactory;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
@@ -39,26 +41,13 @@ import savings.repository.impl.RepositoryConfiguration;
 import savings.service.PaybackBookKeeper;
 import savings.service.impl.ServiceConfiguration;
 
+@Ignore // FIXME
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(classes = {
+    LocalDatabaseConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class
+})
+@Transactional
 public class PaybackBookKeeperModuleTest {
-
-    @Configuration
-    @Import({RepositoryConfiguration.class, ServiceConfiguration.class})
-    @PropertySource("classpath:META-INF/application.properties")
-    public static class Config {
-
-        @Value("classpath:/META-INF/sql/schema.sql")
-        private Resource schemaLocation;
-
-        @Value("${test.data.location}")
-        private Resource dataLocation;
-
-//        @Bean
-//        public FactoryBean<DataSource> dataSource() {
-//            return new TestDataSourceFactory(schemaLocation, dataLocation);
-//        }
-    }
 
     @Autowired
     PaybackBookKeeper bookKeeper;

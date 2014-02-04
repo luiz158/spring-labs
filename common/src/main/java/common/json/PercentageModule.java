@@ -43,11 +43,12 @@ public class PercentageModule extends SimpleModule {
         @Override
         public Percentage deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
                 throws IOException, JsonProcessingException {
+
             if (jsonParser.getCurrentToken() == JsonToken.VALUE_STRING) {
                 return Percentage.of(jsonParser.getValueAsString());
             }
 
-            throw deserializationContext.mappingException("Expected JSON Number");
+            throw deserializationContext.mappingException("Expected percentage string!");
         }
 
     }

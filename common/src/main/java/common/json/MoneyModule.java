@@ -56,11 +56,12 @@ public class MoneyModule extends SimpleModule {
         @Override
         public Money deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
                 throws IOException, JsonProcessingException {
+
             if (jsonParser.getCurrentToken() == JsonToken.VALUE_STRING) {
                 return getAsMoney(jsonParser.getValueAsString());
             }
 
-            throw deserializationContext.mappingException("Expected JSON Number");
+            throw deserializationContext.mappingException("Expected money string!");
         }
     };
 

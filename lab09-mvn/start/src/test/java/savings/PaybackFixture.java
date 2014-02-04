@@ -11,8 +11,8 @@ import savings.model.AccountIncome;
 import savings.model.Merchant;
 import savings.model.Objective;
 import savings.model.PaybackConfirmation;
+import savings.model.PaybackPolicy;
 import savings.model.Purchase;
-import savings.repository.impl.PaybackPolices;
 
 public class PaybackFixture {
 
@@ -40,7 +40,7 @@ public class PaybackFixture {
     public static final String merchantName = "Guns & Bombs";
 
     public static Merchant merchant() {
-        return new Merchant(merchantNumber, merchantName, Percentage.of("6%"), PaybackPolices.ALWAYS);
+        return new Merchant(merchantNumber, merchantName, Percentage.of("6%"), PaybackPolicy.ALWAYS);
     }
 
     public static Purchase purchase() {

@@ -1,10 +1,10 @@
 package savings.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import savings.model.Account;
 
-public interface AccountRepository {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Account findByCreditCard(String creditCardNumber);
-
-    void update(Account account);
+    Account findByCreditCardsNumber(String creditCardNumber);
 }
