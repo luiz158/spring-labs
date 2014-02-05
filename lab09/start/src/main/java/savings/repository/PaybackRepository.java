@@ -1,9 +1,16 @@
 package savings.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-import savings.model.Payback;
+import savings.model.AccountIncome;
+import savings.model.PaybackConfirmation;
+import savings.model.Purchase;
 
-public interface PaybackRepository extends JpaRepository<Payback, Long>, PaybackRepositoryCustom {
+// TODO #1: implement this repository to support basic CRUD operations as well as those defined below
+public interface PaybackRepository {
+
+    List<PaybackConfirmation> findByAccountNumber(String accountNumber);
+
+    PaybackConfirmation save(AccountIncome income, Purchase purchase);
 
 }
