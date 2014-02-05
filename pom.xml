@@ -42,7 +42,7 @@
         <module>lab06</module>
         <module>lab07</module>
         <module>lab08</module>
-        <module>lab09-mvn</module>
+        <module>lab09</module>
     </modules>
 
     <scm>
