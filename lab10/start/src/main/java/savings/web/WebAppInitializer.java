@@ -30,7 +30,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         /**
          * Than we register our {@link org.springframework.context.annotation.Configuration} classes.
-         * Alternatively we can use {@link AnnotationConfigWebApplicationContext#scan(String...)} method.
+         * Alternatively we can use {@link org.springframework.web.context.support.AnnotationConfigWebApplicationContext#scan(String...)} method.
          */
         rootContext.register(
                 JsonMapperConfiguration.class,
@@ -39,13 +39,13 @@ public class WebAppInitializer implements WebApplicationInitializer {
                 ServiceConfiguration.class,
                 WebConfiguration.class);
         /**
-         * Next we register a {@link ContextLoaderListener} to hook to the servlet lifecycle and load the Spring context.
+         * Next we register a {@link org.springframework.web.context.ContextLoaderListener} to hook to the servlet lifecycle and load the Spring context.
          */
         container.addListener(new ContextLoaderListener(rootContext));
         /**
          * Next we register the Spring {@link javax.servlet.Servlet} implementation that will handle all the requests.
-         * We pass to it the applicationContext we created earlier - this is optional, as {@link DispatcherServlet}
-         * will anyway find it in a place where {@link ContextLoaderListener} publishes it, but this way it's more
+         * We pass to it the applicationContext we created earlier - this is optional, as {@link org.springframework.web.servlet.DispatcherServlet}
+         * will anyway find it in a place where {@link org.springframework.web.context.ContextLoaderListener} publishes it, but this way it's more
          * explicit.
          */
         ServletRegistration.Dynamic dispatcherServlet =

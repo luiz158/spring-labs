@@ -27,6 +27,15 @@ import common.json.JsonMapperConfiguration;
 import savings.service.PaybackBookKeeper;
 import savings.web.impl.WebConfiguration;
 
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import static savings.PaybackFixture.creditCardNumber;
+import static savings.PaybackFixture.merchantNumber;
+
 /**
  * This test presents how to test MVC controllers logic utilizing minimized Spring ApplicationContext.
  */
@@ -69,11 +78,28 @@ public class PaybackControllerTest {
     @Test
     public void shouldPostForm() throws Exception {
         mockMvc.perform(post("/payback/confirm")
-                .param("purchaseForm.creditCardNumber", creditCardNumber)
-                .param("purchaseForm.merchantNumber", merchantNumber)
-                .param("purchaseForm.transactionValue", "100.00 EUR"))
+                .param("creditCardNumber", creditCardNumber)
+                .param("merchantNumber", merchantNumber)
+                .param("transactionValue", "100.00 EUR"))
             .andDo(print())
             .andExpect(status().isOk())
+                .andExpect(model().hasNoErrors())
             .andExpect(view().name("payback/confirm"));
+    }
+
+    @Test
+    public void shouldGetErrorWhenPostForm() throws Exception {
+        mockMvc.perform(post("/payback/confirm"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("payback/new"))
+                .andExpect(model().hasErrors());
+    }
+
+    @Test
+    public void shouldGetEarlGrey() throws Exception {
+        mockMvc.perform(get("/payback/teapot"))
+                .andExpect(status().is(418))
+                .andExpect(content().string("\"Tea, Earl Grey, Hot\""));
     }
 }

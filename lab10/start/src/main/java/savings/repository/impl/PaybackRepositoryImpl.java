@@ -22,7 +22,7 @@ import static org.joda.money.CurrencyUnit.EUR;
 import static org.joda.time.DateTime.now;
 
 @Repository
-public class PaybackRepositoryImpl {
+public class PaybackRepositoryImpl implements PaybackRepositoryCustom {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -31,6 +31,7 @@ public class PaybackRepositoryImpl {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public List<PaybackConfirmation> findByAccountNumber(String accountNumber) {
         String sql =
                 "select * " +
@@ -51,6 +52,7 @@ public class PaybackRepositoryImpl {
         }
     };
 
+    @Override
     public PaybackConfirmation save(AccountIncome income, Purchase purchase) {
         String sql =
                 "insert into PAYBACK (NUMBER, AMOUNT, DATE, ACCOUNT_NUMBER, MERCHANT_NUMBER, TRANSACTION_AMOUNT, TRANSACTION_DATE) " +

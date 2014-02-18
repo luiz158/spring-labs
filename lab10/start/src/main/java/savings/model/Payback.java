@@ -21,6 +21,7 @@ public class Payback extends AbstractPersistable<Long> {
 
     private Money amount;
 
+    // TODO #1 add DateTimeFormat to this field for proper formatting
     private DateTime date;
 
     @ManyToOne

@@ -3,13 +3,11 @@ package savings.repository;
 import static org.fest.assertions.Assertions.assertThat;
 import static savings.PaybackFixture.creditCardNumber;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import savings.model.Account;
 
-@Ignore
 public class AccountRepositoryTest extends BaseRepositoryTest {
 
     @Autowired

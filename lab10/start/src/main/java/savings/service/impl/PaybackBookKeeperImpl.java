@@ -7,15 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import savings.model.Account;
-import savings.model.AccountIncome;
-import savings.model.Merchant;
-import savings.model.PaybackConfirmation;
-import savings.model.Purchase;
+import savings.model.*;
 import savings.repository.AccountRepository;
 import savings.repository.MerchantRepository;
 import savings.repository.PaybackRepository;
 import savings.service.PaybackBookKeeper;
+
+import java.util.Collection;
 
 @Service
 public class PaybackBookKeeperImpl implements PaybackBookKeeper {
@@ -55,5 +53,10 @@ public class PaybackBookKeeperImpl implements PaybackBookKeeper {
     @Transactional(propagation = SUPPORTS, readOnly = true)
     public Account accountByCreditCard(String creditCardNumber) {
         return accountRepository.findByCreditCardsNumber(creditCardNumber);
+    }
+
+    @Override
+    public Collection<Payback> getAllPaybacks() {
+        return paybackRepository.findAll();
     }
 }

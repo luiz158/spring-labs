@@ -2,7 +2,6 @@ package savings.repository;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +10,6 @@ import savings.PaybackFixture;
 import savings.model.Merchant;
 import savings.model.PaybackPolicy;
 
-@Ignore
 public class MerchantRepositoryTest extends BaseRepositoryTest {
 
     @Autowired

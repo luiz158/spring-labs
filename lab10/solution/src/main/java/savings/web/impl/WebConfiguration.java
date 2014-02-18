@@ -53,7 +53,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         return cookieLocaleResolver;
     }
 
-    //TODO #3 add MessageSource
+    // TODO #3 add MessageSource
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();

@@ -33,6 +33,7 @@
             </div>
         </c:forEach>
         </div>
+        <a target="_blank" href="/payback">Return to list</a>
     </div>
 </div>
 </body>

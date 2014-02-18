@@ -1,9 +1,8 @@
 package savings.service;
 
-import savings.model.Account;
-import savings.model.Merchant;
-import savings.model.PaybackConfirmation;
-import savings.model.Purchase;
+import savings.model.*;
+
+import java.util.Collection;
 
 public interface PaybackBookKeeper {
 
@@ -21,4 +20,6 @@ public interface PaybackBookKeeper {
     Merchant merchantByNumber(String merchantNumber);
 
     Account accountByCreditCard(String creditCardNumber);
+
+    Collection<Payback> getAllPaybacks();
 }

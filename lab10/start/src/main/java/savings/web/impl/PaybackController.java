@@ -19,6 +19,7 @@ import savings.service.PaybackBookKeeper;
 
 @Controller
 @RequestMapping("/payback")
+//TODO #3 handle expection RuntimeException, returning status code 418 (HttpStatus.I_AM_A_TEAPOT)
 public class PaybackController {
 
     private final PaybackBookKeeper paybackBookKeeper;
@@ -31,6 +32,13 @@ public class PaybackController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Money.class, moneyPropertyEditor);
+    }
+
+    @RequestMapping(method = GET)
+    public ModelAndView list() {
+        ModelAndView modelAndView = new ModelAndView("payback/list");
+        modelAndView.addObject("paybacks", paybackBookKeeper.getAllPaybacks());
+        return modelAndView;
     }
 
     /**
@@ -49,6 +57,8 @@ public class PaybackController {
      * Analogous to the above, this method returns a 'paybackConfirmation' model attribute
      * and looks up a view by id 'payback/confirm' to render in response.
      */
+    // TODO #1 add validation for 'purchaseForm' and bindingResults
+    // TODO #2 return ModelAndView with appropriate view, depending on validation results
     @RequestMapping(value = "/confirm", method = POST)
     public PaybackConfirmation paybackConfirmation(@ModelAttribute PurchaseForm purchaseForm) {
         return paybackBookKeeper.registerPaybackFor(new Purchase(
