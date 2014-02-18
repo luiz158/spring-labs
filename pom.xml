@@ -43,6 +43,7 @@
         <module>lab07</module>
         <module>lab08</module>
         <module>lab09</module>
+        <module>lab10</module>
     </modules>
 
     <scm>
@@ -166,6 +167,11 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.0.3.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.jadira.usertype</groupId>

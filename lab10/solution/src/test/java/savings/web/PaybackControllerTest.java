@@ -1,15 +1,6 @@
 package savings.web;
 
-import static org.mockito.Mockito.mock;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-import static savings.PaybackFixture.creditCardNumber;
-import static savings.PaybackFixture.merchantNumber;
-
+import common.json.JsonMapperConfiguration;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,10 +13,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
-
-import common.json.JsonMapperConfiguration;
 import savings.service.PaybackBookKeeper;
 import savings.web.impl.WebConfiguration;
+
+import static org.mockito.Mockito.mock;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import static savings.PaybackFixture.creditCardNumber;
+import static savings.PaybackFixture.merchantNumber;
 
 /**
  * This test presents how to test MVC controllers logic utilizing minimized Spring ApplicationContext.
@@ -36,7 +34,7 @@ import savings.web.impl.WebConfiguration;
 public class PaybackControllerTest {
 
     @Configuration
-    @Import({ JsonMapperConfiguration.class, WebConfiguration.class })
+    @Import({JsonMapperConfiguration.class, WebConfiguration.class})
     static class Config {
 
         @Bean
@@ -61,9 +59,9 @@ public class PaybackControllerTest {
     @Test
     public void shouldGetForm() throws Exception {
         mockMvc.perform(get("/payback/new"))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(view().name("payback/new"));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("payback/new"));
     }
 
     @Test
@@ -72,8 +70,25 @@ public class PaybackControllerTest {
                 .param("creditCardNumber", creditCardNumber)
                 .param("merchantNumber", merchantNumber)
                 .param("transactionValue", "100.00 EUR"))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(view().name("payback/confirm"));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(model().hasNoErrors())
+                .andExpect(view().name("payback/confirm"));
+    }
+
+    @Test
+    public void shouldGetErrorWhenPostForm() throws Exception {
+        mockMvc.perform(post("/payback/confirm"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("payback/new"))
+                .andExpect(model().hasErrors());
+    }
+
+    @Test
+    public void shouldGetEarlGrey() throws Exception {
+        mockMvc.perform(get("/payback/teapot"))
+                .andExpect(status().is(418))
+                .andExpect(content().string("\"Tea, Earl Grey, Hot\""));
     }
 }
