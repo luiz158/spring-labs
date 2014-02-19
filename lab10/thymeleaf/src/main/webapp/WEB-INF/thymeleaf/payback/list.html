@@ -30,7 +30,7 @@
                 <td th:text="${payback.merchant.name}"></td>
                 <td th:text="${payback.amount}"></td>
                 <!-- TODO #1 add SpEL evalutions for `date` field -->
-                <td th:text="${payback.date}"></td>
+                <td th:text="${{payback.date}}"></td>
             </tr>
         </tbody>
     </table>

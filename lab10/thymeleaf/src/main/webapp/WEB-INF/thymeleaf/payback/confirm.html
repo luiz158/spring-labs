@@ -29,7 +29,7 @@
             <span class="payback-label">Payback distribution:</span>
 
             <div style="padding-left: 25px">
-                <div class="payback-value" th:each="${distr:paybackConfirmation.income.distributions}" th:inline="text">
+                <div class="payback-value" th:each="distr:${paybackConfirmation.income.distributions}" th:inline="text">
                     [[${distr.amount}]] ([[${distr.allocation}]])
                     added to [[${distr.objective}]]
                     totals in [[${distr.totalSavings}]]
