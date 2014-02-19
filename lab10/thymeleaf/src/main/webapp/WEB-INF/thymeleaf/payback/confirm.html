@@ -1,0 +1,43 @@
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Payback confirmation</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div id="payback-form">
+        <h2>Payback confirmation</h2>
+
+        <div>
+            <span class="payback-label">Confirmation number:</span>
+            <span class="payback-value" th:text="${paybackConfirmation.number}"></span>
+        </div>
+        <div>
+            <span class="payback-label">Account number:</span>
+            <span class="payback-value" th:text="${paybackConfirmation.income.accountNumber}"></span>
+        </div>
+        <div>
+            <span class="payback-label">Payback awarded:</span>
+            <span class="payback-value" th:text="${paybackConfirmation.income.amount}"></span>
+        </div>
+        <div>
+            <span class="payback-label">Payback distribution:</span>
+
+            <div style="padding-left: 25px">
+                <div class="payback-value" th:each="${distr:paybackConfirmation.income.distributions}" th:inline="text">
+                    [[${distr.amount}]] ([[${distr.allocation}]])
+                    added to [[${distr.objective}]]
+                    totals in [[${distr.totalSavings}]]
+                </div>
+            </div>
+            <a target="_blank" href="/payback">Return to list</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
