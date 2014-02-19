@@ -3,11 +3,11 @@ Lab 10 - Spring MVC deeper dive
 Topics
 --
 
-* How to validate your forms using
+* How to validate your forms using validators?
 
 * How to handle exceptions?
 
-* How to format view
+* How to format objects on view
 
 * How to handle locale and i18n
 
