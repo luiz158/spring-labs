@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
+import org.springframework.util.StringUtils;
 
 public class MoneyModule extends SimpleModule {
 
@@ -30,7 +31,7 @@ public class MoneyModule extends SimpleModule {
     }
 
     public static Money getAsMoney(String string) {
-        if (string == null) {
+        if (!StringUtils.hasText(string)) {
             return null;
         }
         String[] split = string.split(" ");

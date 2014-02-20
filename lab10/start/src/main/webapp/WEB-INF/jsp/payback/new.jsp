@@ -4,13 +4,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <link href="/resources/css/main.css" rel="stylesheet">
+    <link href="<spring:url value="/resources/css/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div id="payback-form">
     <h2>Enter transaction data:</h2>
+    <spring:url value="/payback/confirm" var="formUrl"/>
     <form:form method="POST"
-               action="${pageContext.request.contextPath}/payback/confirm"
+               action="${formUrl}"
                commandName="purchaseForm">
         <%--TODO #1 add errors field for 'creditCardNumber' field--%>
         <form:label path="creditCardNumber">Credit card number:</form:label>

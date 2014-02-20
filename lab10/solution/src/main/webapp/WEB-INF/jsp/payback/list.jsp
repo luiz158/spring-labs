@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <link href="/resources/css/main.css" rel="stylesheet">
+    <link href="<spring:url value="/resources/css/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <table style="border: 1px black solid">
@@ -34,7 +34,7 @@
        </c:forEach>
     </tbody>
 
-    <a href="/payback/new">Add new payback</a>
+    <a href="<spring:url value='/payback/new'/>">Add new payback</a>
 </table>
 </body>
 </html>

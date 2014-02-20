@@ -5,12 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import savings.model.AccountIncome;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
-import savings.repository.PaybackRepository;
-import savings.repository.PaybackRepositoryCustom;
 
 import java.sql.Date;
 import java.sql.ResultSet;

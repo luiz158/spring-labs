@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <link href="/resources/css/main.css" rel="stylesheet">
+    <link href="<spring:url value="/resources/css/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div id="payback-form">
@@ -33,7 +33,7 @@
             </div>
         </c:forEach>
         </div>
-        <a target="_blank" href="/payback">Return to list</a>
+        <a target="_blank" href="<spring:url value='/payback'/>">Return to list</a>
     </div>
 </div>
 </body>

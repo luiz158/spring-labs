@@ -14,6 +14,8 @@ Topics
 Instructions
 --
 
+You can run this application using maven jetty plugin command: maven jetty:run
+
  1. Add validation ([Spring][1], [JSR-303][2])  for PurchaseForm object in PaybackController. Add [error fields][8] on fields inputs in new.jsp view
 
  2. [Handle][3] RuntimeException in PaybackController - make it return HttpStatus.I_AM_A_TEAPOT (418) and string "Tea, Earl Grey, Hot"
