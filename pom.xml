@@ -1,35 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.0.0.RC4</version>
+    </parent>
+
     <groupId>org.training</groupId>
     <artifactId>spring-labs</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <java.version>1.7</java.version>
 
         <!-- COMPILE DEPENDENCIES VERSIONS -->
-        <aspectj.version>1.7.4</aspectj.version>
         <guava.version>16.0</guava.version>
-        <h2.version>1.3.173</h2.version>
-        <hibernate.version>4.3.0.Final</hibernate.version>
-        <jackson.version>2.3.1</jackson.version>
-        <slf4j.version>1.7.5</slf4j.version>
-        <spring.version>4.0.1.RELEASE</spring.version>
-        <spring.boot.version>1.0.0.RC1</spring.boot.version>
-        <spring.data.commons.version>1.6.3.RELEASE</spring.data.commons.version>
-        <spring.data.jpa.version>1.4.3.RELEASE</spring.data.jpa.version>
+        <spring.boot.version>1.0.0.RC4</spring.boot.version>
 
         <!-- TEST DEPENDENCIES VERSIONS -->
         <cucumber.version>1.1.2</cucumber.version>
         <festassert.version>1.4</festassert.version>
         <hamcrest.version>1.1</hamcrest.version>
-        <junit.version>4.8.2</junit.version>
-        <mockito.version>1.9.5</mockito.version>
         <json-path.version>0.9.1</json-path.version>
+        <spring-data-commons.version>1.6.3.RELEASE</spring-data-commons.version>
     </properties>
 
     <modules>
@@ -44,6 +39,7 @@
         <module>lab08</module>
         <module>lab09</module>
         <module>lab10</module>
+        <module>lab11</module>
     </modules>
 
     <scm>
@@ -92,29 +88,31 @@
     </dependencies>
 
     <dependencyManagement>
-        <!-- PLEASE add new dependencies ALPHABETICALLY -->
-        <!-- COMPILE DEPENDENCIES START -->
-
         <dependencies>
+            <!-- PLEASE add new dependencies ALPHABETICALLY -->
+            <!-- PROJECT MODULES DEPENDENCIES START -->
+
             <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
+                <groupId>org.training</groupId>
+                <artifactId>spring-labs-common</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-joda</artifactId>
-                <version>${jackson.version}</version>
+                <groupId>org.training</groupId>
+                <artifactId>spring-labs-common</artifactId>
+                <type>test-jar</type>
+                <version>${project.version}</version>
+                <scope>test</scope>
             </dependency>
+
+            <!-- PROJECT MODULES DEPENDENCIES END -->
+            <!-- PLEASE add new dependencies ALPHABETICALLY -->
+            <!-- COMPILE DEPENDENCIES START -->
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.el</groupId>
@@ -124,13 +122,8 @@
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>3.0.1</version>
+                <version>${servlet-api.version}</version>
                 <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
@@ -139,39 +132,9 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-                <version>2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjrt</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>5.0.3.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.jadira.usertype</groupId>
@@ -182,36 +145,6 @@
                 <groupId>org.joda</groupId>
                 <artifactId>joda-money</artifactId>
                 <version>0.9</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-asm</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -238,41 +171,6 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-expression</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-orm</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>${spring.boot.version}</version>
@@ -280,24 +178,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-commons</artifactId>
-                <version>${spring.data.commons.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>${spring.data.jpa.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.training</groupId>
-                <artifactId>spring-labs-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.training</groupId>
-                <artifactId>spring-labs-common</artifactId>
-                <type>test-jar</type>
-                <version>${project.version}</version>
-                <scope>test</scope>
+                <version>${spring-data-commons.version}</version>
             </dependency>
 
             <!-- COMPILE DEPENDENCIES END -->
@@ -395,6 +276,9 @@
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>9.0.2.v20130417</version>
+                    <configuration>
+                        <war>${basedir}/target/${project.artifactId}</war>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>com.rimerosolutions.maven.plugins</groupId>

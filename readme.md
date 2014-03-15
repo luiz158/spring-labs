@@ -34,6 +34,9 @@ Labs index:
  6. [Rebooted](lab06)
  7. [Transactions and other Cross-Cutting Concerns](lab07)
  8. [Introduction to Spring MVC](lab08)
+ 9. [Spring Data JPA](lab09)
+ 10. [More Spring MVC](lab10)
+ 11. [Spring RESTful MVC & WebSockets](lab11)
 
  [1]: http://spring.io
  [2]: http://warszawa.jug.pl

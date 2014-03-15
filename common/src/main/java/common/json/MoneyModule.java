@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
+import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -19,7 +20,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
-import org.springframework.util.StringUtils;
 
 public class MoneyModule extends SimpleModule {
 
