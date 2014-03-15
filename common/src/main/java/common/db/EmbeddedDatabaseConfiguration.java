@@ -1,8 +1,14 @@
 package common.db;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -10,12 +16,17 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 @Configuration
+@PropertySource("classpath:META-INF/application.properties")
 public class EmbeddedDatabaseConfiguration {
 
-    @Autowired
-    private ResourceLoader resourceLoader;
+    @Value("${test.schema.location}")
+    private Resource schemaLocation;
+
+    @Value("${test.data.location}")
+    private Resource dataLocation;
 
     @Bean
+    @ConditionalOnMissingBean(DataSource.class)
     public EmbeddedDatabaseFactoryBean dataSource() {
         EmbeddedDatabaseFactoryBean factoryBean = new EmbeddedDatabaseFactoryBean();
         factoryBean.setDatabaseType(EmbeddedDatabaseType.H2);
@@ -26,8 +37,8 @@ public class EmbeddedDatabaseConfiguration {
 
     private DatabasePopulator databasePopulator() {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(resourceLoader.getResource("classpath:/META-INF/sql/schema.sql"));
-        populator.addScript(resourceLoader.getResource("classpath:/META-INF/sql/data.sql"));
+        populator.addScript(schemaLocation);
+        populator.addScript(dataLocation);
         return populator;
     }
 

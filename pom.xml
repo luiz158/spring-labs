@@ -3,7 +3,7 @@
 
     <groupId>org.training</groupId>
     <artifactId>spring-labs</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
+    <version>0.9.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -13,10 +13,15 @@
 
         <!-- COMPILE DEPENDENCIES VERSIONS -->
         <aspectj.version>1.7.4</aspectj.version>
+        <guava.version>16.0</guava.version>
+        <h2.version>1.3.173</h2.version>
+        <hibernate.version>4.3.0.Final</hibernate.version>
         <jackson.version>2.3.1</jackson.version>
         <slf4j.version>1.7.5</slf4j.version>
-        <spring.version>3.2.6.RELEASE</spring.version>
-
+        <spring.version>4.0.1.RELEASE</spring.version>
+        <spring.boot.version>1.0.0.RC1</spring.boot.version>
+        <spring.data.commons.version>1.6.3.RELEASE</spring.data.commons.version>
+        <spring.data.jpa.version>1.4.3.RELEASE</spring.data.jpa.version>
 
         <!-- TEST DEPENDENCIES VERSIONS -->
         <cucumber.version>1.1.2</cucumber.version>
@@ -37,6 +42,8 @@
         <module>lab06</module>
         <module>lab07</module>
         <module>lab08</module>
+        <module>lab09</module>
+        <module>lab10</module>
     </modules>
 
     <scm>
@@ -100,9 +107,14 @@
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.3.173</version>
+                <version>${h2.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.el</groupId>
@@ -145,6 +157,26 @@
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.0.3.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jadira.usertype</groupId>
+                <artifactId>usertype.core</artifactId>
+                <version>3.1.0.CR10</version>
             </dependency>
             <dependency>
                 <groupId>org.joda</groupId>
@@ -239,6 +271,21 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${spring.data.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring.data.jpa.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.training</groupId>
@@ -362,5 +409,20 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/libs-snapshot</url>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/libs-snapshot</url>
+            <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

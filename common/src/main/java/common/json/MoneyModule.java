@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
+import org.springframework.util.StringUtils;
 
 public class MoneyModule extends SimpleModule {
 
@@ -30,7 +31,7 @@ public class MoneyModule extends SimpleModule {
     }
 
     public static Money getAsMoney(String string) {
-        if (string == null) {
+        if (!StringUtils.hasText(string)) {
             return null;
         }
         String[] split = string.split(" ");
@@ -56,11 +57,12 @@ public class MoneyModule extends SimpleModule {
         @Override
         public Money deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
                 throws IOException, JsonProcessingException {
+
             if (jsonParser.getCurrentToken() == JsonToken.VALUE_STRING) {
                 return getAsMoney(jsonParser.getValueAsString());
             }
 
-            throw deserializationContext.mappingException("Expected JSON Number");
+            throw deserializationContext.mappingException("Expected money string!");
         }
     };
 

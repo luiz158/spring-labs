@@ -11,6 +11,7 @@ import static savings.PaybackFixture.creditCardNumber;
 import static savings.PaybackFixture.merchantNumber;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -72,6 +73,7 @@ public class PaybackControllerTest {
     }
 
     @Test
+    @Ignore
     public void shouldPostForm() throws Exception {
         mockMvc.perform(post("/payback/confirm")
                 .param("purchaseForm.creditCardNumber", creditCardNumber)

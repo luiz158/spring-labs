@@ -1,0 +1,37 @@
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Create new payback</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div id="payback-form">
+        <h2>Enter transaction data:</h2>
+        <form method="POST"
+                   th:action="@{/payback/confirm}"
+                   th:object="${purchaseForm}">
+
+            <!--TODO #1 add errors field for 'creditCardNumber' field-->
+            <p th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}">Incorrect data</p>
+            <label th:for="${#ids.next('creditCardNumber')}">Credit card number:</label>
+            <input type="text" th:field="*{creditCardNumber}" />
+            <!--TODO #2 add errors field for 'merchantNumber' field-->
+            <p th:if="${#fields.hasErrors('merchantNumber')}" th:errors="*{merchantNumber}">Incorrect data</p>
+            <label th:for="${#ids.next('merchantNumber')}">Merchant number:</label>
+            <input type="text" th:field="*{merchantNumber}" />
+            <!--TODO #3 add errors field for 'transactionValue' field-->
+            <p th:if="${#fields.hasErrors('transactionValue')}" th:errors="*{transactionValue}">Incorrect data</p>
+            <label th:for="${#ids.next('transactionValue')}">Transaction value:</label>
+            <input type="text" th:field="*{transactionValue}" />
+
+            <input type="submit" value="Get Payback!" id="submit" />
+        </form>
+    </div>
+</div>
+</body>
+</html>

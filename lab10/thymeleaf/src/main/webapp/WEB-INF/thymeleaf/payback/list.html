@@ -1,0 +1,40 @@
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>List paybacks</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <table style="border: 1px black solid">
+        <caption th:text="#{paybacks.label}"></caption>
+        <thead>
+        <tr>
+            <th></th>
+            <th th:text="#{number.label}"></th>
+            <th th:text="#{accountName.label}"></th>
+            <th th:text="#{mechantName.label}"></th>
+            <th th:text="#{amount.label}"></th>
+            <th th:text="#{date.label}"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="payback, counter: ${paybacks}">
+                <td th:text="${counter.count}"></td>
+                <td th:text="${payback.number}"></td>
+                <td th:text="${payback.account.name}"></td>
+                <td th:text="${payback.merchant.name}"></td>
+                <td th:text="${payback.amount}"></td>
+                <!-- TODO #1 add SpEL evalutions for `date` field -->
+                <td th:text="${{payback.date}}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/payback/new'}">Add new payback</a>
+</div>
+</body>
+</html>
