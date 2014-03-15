@@ -11,6 +11,7 @@ import static savings.PaybackFixture.creditCardNumber;
 import static savings.PaybackFixture.merchantNumber;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ import static savings.PaybackFixture.merchantNumber;
 /**
  * This test presents how to test MVC controllers logic utilizing minimized Spring ApplicationContext.
  */
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 @WebAppConfiguration

@@ -21,6 +21,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import common.hibernate.SmartHibernatePersistenceProvider;
+
 @Configuration
 @ComponentScan(basePackageClasses = RepositoryConfiguration.class, excludeFilters = {
         // this filter was added to prevent interference with test configurations
@@ -43,11 +45,15 @@ public class RepositoryConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
-        entityManagerFactoryBean.setPackagesToScan("savings.model");
-        entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
+        entityManagerFactoryBean.setPersistenceProvider(persistenceProvider());
         entityManagerFactoryBean.setJpaVendorAdapter(buildJpaVendorAdapter());
         entityManagerFactoryBean.setJpaProperties(buildJpaProperties());
         return entityManagerFactoryBean;
+    }
+
+    private SmartHibernatePersistenceProvider persistenceProvider() {
+        return new SmartHibernatePersistenceProvider()
+                .withAnnotatedPackages("savings.model");
     }
 
     private HibernateJpaVendorAdapter buildJpaVendorAdapter() {
