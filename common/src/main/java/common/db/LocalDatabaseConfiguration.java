@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.Resource;
 import org.springframework.data.repository.init.Jackson2RepositoryPopulatorFactoryBean;
@@ -19,7 +18,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import common.json.JsonMapperConfiguration;
 
 @Configuration
-@PropertySource("classpath:META-INF/application.properties")
 @Import(JsonMapperConfiguration.class)
 public class LocalDatabaseConfiguration {
 
@@ -29,7 +27,7 @@ public class LocalDatabaseConfiguration {
     @Value("${database.url:jdbc:h2:tcp://localhost/~/spring-labs/test}")
     private String databaseUrl;
 
-    @Value("${test.data.location}")
+    @Value("${test.data.location:classpath:/META-INF/sql/data.json}")
     private Resource dataLocation;
 
     @Bean

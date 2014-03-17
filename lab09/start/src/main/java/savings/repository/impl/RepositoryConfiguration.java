@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import common.hibernate.SmartHibernatePersistenceProvider;
 
 @Configuration
+@PropertySource("classpath:META-INF/application.properties")
 @ComponentScan(basePackageClasses = RepositoryConfiguration.class, excludeFilters = {
         // this filter was added to prevent interference with test configurations
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
