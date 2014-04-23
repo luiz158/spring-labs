@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:h2a:mem:test;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;MVCC=true
+    username: sa
+    password
+    driverClassName: org.h2.Driver

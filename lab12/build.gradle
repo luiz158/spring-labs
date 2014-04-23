@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.BUILD-SNAPSHOT")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'lab12'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile 'org.codehaus.groovy:groovy-all:2.2.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+    compile 'org.jadira.usertype:usertype.jodatime:2.0.1'
+    compile 'org.apache.commons:commons-lang3:3.2.1'
+    compile 'com.jayway.jsonpath:json-path-assert:0.9.1'
+    compile 'org.springframework.security:spring-security-config'
+    compile 'org.springframework.security:spring-security-web'
+
+    //providedCompile "javax.servlet:javax.servlet-api:3.0.1"
+
+    testCompile 'junit:junit:4.11'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.spockframework:spock-core:0.7-groovy-2.0") {
+        exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+    }
+    testRuntime("org.spockframework:spock-spring:0.7-groovy-2.0") {
+        exclude group: 'org.spockframework', module: 'spock-core'
+    }
+    testRuntime "cglib:cglib-nodep:2.2.2"
+    testRuntime "org.objenesis:objenesis:1.2" // allows mocking of classes without default constructor (together with CGLIB)
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+sourceSets {
+    test {
+        groovy {
+            srcDirs = ['src/test/groovy']
+        }
+    }
+}
