@@ -4,6 +4,7 @@ import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 
 import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,12 +49,20 @@ public class PaybackBookKeeperImpl implements PaybackBookKeeper {
     @Override
     @Transactional(propagation = SUPPORTS, readOnly = true)
     public Merchant merchantByNumber(String merchantNumber) {
-        return merchantRepository.findByNumber(merchantNumber);
+    	Merchant merchant = merchantRepository.findByNumber(merchantNumber);
+    	if(merchant == null) {
+    		throw new EmptyResultDataAccessException(1);
+    	}
+    	return merchant; 
     }
 
     @Override
     @Transactional(propagation = SUPPORTS, readOnly = true)
     public Account accountByCreditCard(String creditCardNumber) {
-        return accountRepository.findByCreditCardsNumber(creditCardNumber);
+    	Account account = accountRepository.findByCreditCardsNumber(creditCardNumber);
+        if (account == null) {
+            throw new EmptyResultDataAccessException(1);
+        }
+        return account;
     }
 }
