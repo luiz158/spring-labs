@@ -39,8 +39,8 @@ After importing whole project in to Eclipse you may see errors in each subprojec
 This is because spring-boot currently uses Groovy 2.2 and Eclipse plugin supports only 2.0 (as of 20-06-2014),
 to make this errors disappear you need perform following steps for each project with above error :
 
-   1.Go to Project properties -> Groovy Compiler                       
-   2.Set groovy compiler for project to 2.0
+ 1. Go to Project properties -> Groovy Compiler                       
+ 2. Set groovy compiler for project to 2.0
 
 Now you are good to go :) 
 
