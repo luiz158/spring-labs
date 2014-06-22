@@ -28,21 +28,26 @@ Find instructions for each lab in its sub-folder.
 In main project pom.xml eclipse-groovy-compiler is declared and groovy is used in some labs. 
 To allow eclipse support for groovy and maven integration (m2e) with groovy compiler
 it is required to install following plugin according to instructions :
-http://groovy.codehaus.org/Eclipse+Plugin
+http://groovy.codehaus.org/Eclipse+Plugin                        
 Further readings :
 http://docs.codehaus.org/display/GROOVY/Groovy-Eclipse+compiler+plugin+for+Maven
 
 After importing whole project in to Eclipse you may see errors in each subproject :
-> Groovy: compiler mismatch Project level is: 2.2 Workspace level is 2.0
+> Groovy: compiler mismatch Project level is: 2.2 Workspace level is 2.0                              
 > Groovy compiler level expected by the project does not match workspace compiler level.
+
 This is because spring-boot currently uses Groovy 2.2 and Eclipse plugin supports only 2.0 (as of 20-06-2014),
 to make this errors disappear you need perform following steps for each project with above error :
-1. Go to Project properties -> Groovy Compiler 
-2. Set groovy compiler for project to 2.0
+
+   1.Go to Project properties -> Groovy Compiler                       
+   2.Set groovy compiler for project to 2.0
 
 Now you are good to go :) 
 
 
+                             
+                                                                                             
+                                                                                                    
 
 When in doubt refer to [the docs][7].
 
