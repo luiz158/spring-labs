@@ -9,39 +9,22 @@ import static savings.PaybackFixture.creditCardNumber;
 import static savings.PaybackFixture.merchantNumber;
 import static savings.PaybackFixture.purchase;
 
-import javax.sql.DataSource;
-
 import org.joda.money.Money;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import common.db.LocalDatabaseConfiguration;
-import common.sql.TestDataSourceFactory;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
 import savings.repository.impl.RepositoryConfiguration;
-import savings.service.PaybackBookKeeper;
 import savings.service.impl.ServiceConfiguration;
 
-@Ignore // FIXME
+import common.db.LocalDatabaseConfiguration;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
     LocalDatabaseConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class

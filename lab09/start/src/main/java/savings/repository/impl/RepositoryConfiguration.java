@@ -46,6 +46,7 @@ public class RepositoryConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
+        entityManagerFactoryBean.setPackagesToScan("savings.model");
         entityManagerFactoryBean.setPersistenceProvider(persistenceProvider());
         entityManagerFactoryBean.setJpaVendorAdapter(buildJpaVendorAdapter());
         entityManagerFactoryBean.setJpaProperties(buildJpaProperties());
