@@ -41,7 +41,7 @@ import savings.repository.impl.RepositoryConfiguration;
 import savings.service.PaybackBookKeeper;
 import savings.service.impl.ServiceConfiguration;
 
-@Ignore // FIXME
+@Ignore // TODO #1 : remove after completion of all other tasks
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
     LocalDatabaseConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class
