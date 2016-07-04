@@ -8,7 +8,6 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 import org.joda.money.Money;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -20,8 +19,7 @@ import savings.repository.MerchantRepository;
 import savings.repository.NotFoundException;
 import savings.repository.PaybackRepository;
 
-//FIXME 0: remove @Ignore to use the test
-@Ignore
+
 public class PaybackBookKeeperImplTest {
 
     AccountRepository accountRepository = mock(AccountRepository.class);
@@ -30,7 +28,7 @@ public class PaybackBookKeeperImplTest {
 
     PaybackRepository paybackRepository = mock(PaybackRepository.class);
 
-    // PaybackBookKeeperImpl bookKeeper =
+    PaybackBookKeeperImpl bookKeeper = new PaybackBookKeeperImpl(accountRepository, merchantRepository, paybackRepository);
 
     String creditCardNumber = "1234";
 
@@ -48,7 +46,7 @@ public class PaybackBookKeeperImplTest {
     public void shouldThrowWhenAccountNotFound() {
         when(accountRepository.findByCreditCard(creditCardNumber)).thenThrow(new NotFoundException());
 
-        //catchException(bookKeeper, NotFoundException.class).registerPaybackFor(...);
+        catchException(bookKeeper, NotFoundException.class).registerPaybackFor(purchase);
 
         assertThat(caughtException()).isNotNull();
     }
@@ -57,7 +55,7 @@ public class PaybackBookKeeperImplTest {
     public void shouldThrowWhenMerchantNotFound() {
         when(merchantRepository.findByNumber(merchantNumber)).thenThrow(new NotFoundException());
 
-        //catchException(bookKeeper, NotFoundException.class).registerPaybackFor(...);
+        catchException(bookKeeper, NotFoundException.class).registerPaybackFor(purchase);
 
         assertThat(caughtException()).isNotNull();
     }
@@ -73,7 +71,7 @@ public class PaybackBookKeeperImplTest {
             }
         }).when(paybackRepository).save(any(AccountIncome.class), same(purchase));
 
-        PaybackConfirmation confirmation = null; // replace with actual call to bookKeeper.registerPaybackFor(..)
+        PaybackConfirmation confirmation = bookKeeper.registerPaybackFor(purchase);
 
         assertThat(confirmation.getNumber()).isEqualTo("1111");
         assertThat(confirmation.getIncome().getAmount()).isEqualTo(Money.of(EUR, 6L));
