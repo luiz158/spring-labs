@@ -32,6 +32,9 @@ public class PaybackBookKeeperModuleTest {
                 "classpath:/META-INF/spring/application-context.xml",
                 "classpath:/META-INF/spring/datasource-testcontext.xml"
         );
+
+        //pliki sa w common/src/main/resources/META-INF/...
+
         bookKeeper = context.getBean("paybackBookKeeper", PaybackBookKeeper.class);
     }
 
