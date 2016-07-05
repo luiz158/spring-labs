@@ -3,11 +3,14 @@ package savings.model;
 import static org.joda.money.CurrencyUnit.EUR;
 import static org.joda.time.DateTime.now;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
 import org.joda.money.Money;
+import org.junit.Assert;
 import org.junit.Test;
 
 import common.math.Percentage;
+import org.mockito.Mockito;
 
 public class MerchantTest {
 
@@ -21,17 +24,21 @@ public class MerchantTest {
 
     PaybackPolicy paybackPolicy = mock(PaybackPolicy.class);
 
-    Merchant merchant = new Merchant(merchantNumber, "Guns & Bombs", Percentage.of("6%"));
+    Merchant merchant = new Merchant(merchantNumber, "Guns & Bombs", Percentage.of("6%"), paybackPolicy);
 
     // TODO #0 a good practice when implementing tests is to start with an assertion to get the red bar first
 
     @Test
     public void shouldCalculatePaybackIfEligible() {
-        // TODO #1 implement the case when the policy allows for the payback to be granted
+        Mockito.when(paybackPolicy.isEligible(account, purchase)).thenReturn(true);
+        Assert.assertEquals(Money.of(EUR,6),
+                merchant.calculatePaybackFor(account,purchase));
     }
 
     @Test
     public void shouldReturnZeroIfNotEligible() {
-        // TODO #2 implement the case when the policy does not allow for the payback to be granted
+        Mockito.when(paybackPolicy.isEligible(account, purchase)).thenReturn(false);
+        Assert.assertEquals(Money.zero(EUR),
+                merchant.calculatePaybackFor(account,purchase));
     }
 }

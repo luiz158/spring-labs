@@ -3,14 +3,17 @@
     xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="accountRepository" class="savings.repository.impl.JdbcAccountRepository"
-        p:dataSource-ref="dataSource" />
+    <bean id="baseRepository" abstract="true"
+          p:dataSource-ref="dataSource" />
 
-    <bean id="merchantRepository" class="savings.repository.impl.JdbcMerchantRepository"
-        p:dataSource-ref="dataSource" />
+    <bean id="accountRepository" parent="baseRepository"
+          class="savings.repository.impl.JdbcAccountRepository"/>
 
-    <bean id="paybackRepository" class="savings.repository.impl.JdbcPaybackRepository"
-        p:dataSource-ref="dataSource" />
+    <bean id="merchantRepository" parent="baseRepository"
+          class="savings.repository.impl.JdbcMerchantRepository"/>
+
+    <bean id="paybackRepository" parent="baseRepository"
+          class="savings.repository.impl.JdbcPaybackRepository"/>
 
     <bean id="paybackBookKeeper" class="savings.service.impl.PaybackBookKeeperImpl"
         c:accountRepository-ref="accountRepository"

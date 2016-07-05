@@ -14,13 +14,17 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
 import savings.service.PaybackBookKeeper;
 
-// TODO #1 make this test extend from AbstractJUnit4SpringContextTests
-// TODO #2 configure ApplicationContext for this test using @ContextConfiguration and its locations attribute
-public class PaybackBookKeeperModuleTest {
+@ContextConfiguration(locations = {
+        "classpath:/META-INF/spring/application-context.xml",
+        "classpath:/META-INF/spring/datasource-testcontext.xml"
+})
+public class PaybackBookKeeperModuleTest extends AbstractJUnit4SpringContextTests {
 
     PaybackBookKeeper bookKeeper = null;
 
@@ -30,23 +34,10 @@ public class PaybackBookKeeperModuleTest {
 
     Purchase purchase = new Purchase(Money.of(EUR, 100L), creditCardNumber, merchantNumber, now());
 
-    // TODO #3 remove this field and use the one from super class that was configured for you
-    ConfigurableApplicationContext applicationContext;
 
     @Before
     public void setUp() {
-        // TODO #4.1 remove manual configuration of ApplicationContext - the base class handles that now
-        applicationContext = new ClassPathXmlApplicationContext(
-                "classpath:/META-INF/spring/application-context.xml",
-                "classpath:/META-INF/spring/datasource-testcontext.xml"
-        );
         bookKeeper = applicationContext.getBean("paybackBookKeeper", PaybackBookKeeper.class);
-    }
-
-    @After
-    public void tearDown() {
-        // TODO #4.2 remove manual configuration of ApplicationContext - the base class handles that now
-        applicationContext.close();
     }
 
     @Test
