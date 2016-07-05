@@ -18,7 +18,7 @@ import common.sql.TestDataSourceFactory;
 import savings.model.Merchant;
 
 // FIXME 0: remove @Ignore to use the test
-@Ignore
+//@Ignore
 public class JdbcMerchantRepositoryTest {
 
     JdbcMerchantRepository repository;
@@ -31,6 +31,7 @@ public class JdbcMerchantRepositoryTest {
         // deliver its dependencies
         repository.setDataSource(createDataSource());
         // FIXME 1: initialize the bean
+        repository.populateCache(); // uzywane bo jest uzyte new (tworzenie przy pomocy Javy a nie Spring)
 
     }
 
@@ -38,7 +39,7 @@ public class JdbcMerchantRepositoryTest {
     public void tearDown() {
         // simulate Spring bean destruction lifecycle
         // FIXME 2: destroy the bean
-
+        repository.clearCache(); //tworzenie reczne a nie w Springu
     }
 
     @Test
@@ -72,6 +73,6 @@ public class JdbcMerchantRepositoryTest {
         return new TestDataSourceFactory(
                 new ClassPathResource("/META-INF/sql/schema.sql"),
                 new ClassPathResource("/META-INF/sql/data.sql")
-            ).getObject();
+        ).getObject();
     }
 }
