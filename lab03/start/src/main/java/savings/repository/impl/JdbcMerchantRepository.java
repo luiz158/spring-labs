@@ -7,12 +7,15 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import common.math.Percentage;
+import org.springframework.dao.EmptyResultDataAccessException;
 import savings.model.Merchant;
 import savings.repository.MerchantRepository;
 
@@ -29,6 +32,7 @@ public class JdbcMerchantRepository implements MerchantRepository {
     }
 
     // FIXME 1: register this method as initialization lifecycle callback
+    @PostConstruct
     void populateCache() {
         LOG.info("Populating merchants cache...");
         String sql =
@@ -49,6 +53,7 @@ public class JdbcMerchantRepository implements MerchantRepository {
     }
 
     // FIXME 2: register this method as destruction lifecycle callback
+    @PreDestroy
     void clearCache() {
         LOG.info("Clearing merchants cache...");
         cache.clear();
@@ -58,7 +63,12 @@ public class JdbcMerchantRepository implements MerchantRepository {
     public Merchant findByNumber(String number) {
         // FIXME 3: query cache to find a merchant by number
         // remember to throw a proper exception if a merchant is not found (see tests for a hint)
-        return null;
+        Merchant merchant = cache.get(number);
+        if(merchant==null)
+        {
+            throw new EmptyResultDataAccessException(1);
+        }
+        return merchant;
     }
 
     private Merchant readMerchantFrom(ResultSet resultSet) throws SQLException {
