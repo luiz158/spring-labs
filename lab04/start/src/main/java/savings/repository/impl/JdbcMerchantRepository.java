@@ -71,7 +71,8 @@ public class JdbcMerchantRepository implements MerchantRepository {
         Merchant account = new Merchant(
                 resultSet.getString("NUMBER"),
                 resultSet.getString("NAME"),
-                new Percentage(resultSet.getBigDecimal("PAYBACK"))
+                new Percentage(resultSet.getBigDecimal("PAYBACK")),
+                PaybackPolices.valueOf(resultSet.getString("PAYBACK_POLICY").toUpperCase())
         );
         account.setId(resultSet.getLong("ID"));
         return account;

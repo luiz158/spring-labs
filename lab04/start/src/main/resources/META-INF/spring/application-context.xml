@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
-    xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="accountRepository" class="savings.repository.impl.JdbcAccountRepository"
-        p:dataSource-ref="dataSource" />
+    <bean id="parentData" abstract="true"
+          p:dataSource-ref="dataSource">
+    </bean>
+
+    <bean id="accountRepository" parent="parentData"
+          class="savings.repository.impl.JdbcAccountRepository"/>
 
     <bean id="merchantRepository" class="savings.repository.impl.JdbcMerchantRepository"
-        p:dataSource-ref="dataSource" />
+          p:dataSource-ref="dataSource"/>
 
     <bean id="paybackRepository" class="savings.repository.impl.JdbcPaybackRepository"
-        p:dataSource-ref="dataSource" />
+          p:dataSource-ref="dataSource"/>
 
     <bean id="paybackBookKeeper" class="savings.service.impl.PaybackBookKeeperImpl"
-        c:accountRepository-ref="accountRepository"
-        c:merchantRepository-ref="merchantRepository"
-        c:paybackRepository-ref="paybackRepository" />
+          c:accountRepository-ref="accountRepository"
+          c:merchantRepository-ref="merchantRepository"
+          c:paybackRepository-ref="paybackRepository"/>
 
 </beans>
