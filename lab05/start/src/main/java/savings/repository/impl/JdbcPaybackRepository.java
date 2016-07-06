@@ -6,18 +6,22 @@ import java.sql.*;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import savings.model.AccountIncome;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
 import savings.repository.PaybackRepository;
 
 // TODO #1 mark as repository component
+@Repository
 public class JdbcPaybackRepository implements PaybackRepository {
 
     private DataSource dataSource;
 
     // TODO #2 use constructor dependency injection instead
-    public void setDataSource(DataSource dataSource) {
+    @Autowired
+    public JdbcPaybackRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

@@ -9,29 +9,34 @@ import javax.sql.DataSource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import common.math.Percentage;
 import common.sql.TestDataSourceFactory;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import savings.ConfiguredDatabaseTest;
 import savings.model.Merchant;
 
-public class JdbcMerchantRepositoryTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+public class JdbcMerchantRepositoryTest extends ConfiguredDatabaseTest {
 
-    JdbcMerchantRepository repository;
+    @Autowired
+    JdbcMerchantRepository repository = null;
 
     @Before
-    public void setUp() throws Exception {
-        repository = new JdbcMerchantRepository();
-        repository.setDataSource(createDataSource());
+    public void setUp(){
         repository.populateCache();
     }
 
     @After
-    public void tearDown() {
+    public void cleanUp(){
         repository.clearCache();
     }
-
+    
     @Test
     public void shouldThrowWhenMerchantNotFound() {
         catchException(repository, EmptyResultDataAccessException.class).findByNumber("111111111");
@@ -51,17 +56,11 @@ public class JdbcMerchantRepositoryTest {
 
     @Test
     public void shouldClearCacheOnShutdown() {
-        tearDown();
+        repository.clearCache();
 
         catchException(repository, EmptyResultDataAccessException.class).findByNumber("1234567890");
 
         assertThat(caughtException()).isNotNull();
     }
 
-    private DataSource createDataSource() throws Exception {
-        return new TestDataSourceFactory(
-                new ClassPathResource("/META-INF/sql/schema.sql"),
-                new ClassPathResource("/META-INF/sql/data.sql")
-            ).getObject();
-    }
 }

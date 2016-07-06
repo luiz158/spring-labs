@@ -2,6 +2,9 @@ package savings.service.impl;
 
 import org.joda.money.Money;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import savings.model.Account;
 import savings.model.AccountIncome;
 import savings.model.Merchant;
@@ -13,7 +16,9 @@ import savings.service.PaybackBookKeeper;
 import savings.model.Purchase;
 
 // TODO #1 mark as service component
+@Service
 public class PaybackBookKeeperImpl implements PaybackBookKeeper {
+
 
     private final AccountRepository accountRepository;
 
@@ -21,7 +26,7 @@ public class PaybackBookKeeperImpl implements PaybackBookKeeper {
 
     private final PaybackRepository paybackRepository;
 
-    // TODO #2 enable constructor arguments auto-wiring
+    @Autowired
     public PaybackBookKeeperImpl(AccountRepository accountRepository, MerchantRepository merchantRepository,
             PaybackRepository paybackRepository) {
         this.accountRepository = accountRepository;

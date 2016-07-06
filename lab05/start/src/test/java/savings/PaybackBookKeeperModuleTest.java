@@ -6,26 +6,40 @@ import static org.fest.assertions.Assertions.assertThat;
 import static org.joda.money.CurrencyUnit.EUR;
 import static org.joda.time.DateTime.now;
 
+import common.sql.TestDataSourceFactory;
 import org.joda.money.Money;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
+import savings.repository.impl.RepositoryConfiguration;
 import savings.service.PaybackBookKeeper;
+import savings.service.impl.ServiceConfiguration;
 
-// TODO #0 remove @Ignore to enable the test
+import javax.sql.DataSource;
+
 // TODO #1 remove inheritance and annotate the test to be run using SpringJUnit4ClassRunner
 // TODO #2 change context configuration to use internal configuration class instead of XML files
-@Ignore
-public class PaybackBookKeeperModuleTest extends AbstractJUnit4SpringContextTests {
+@RunWith(SpringJUnit4ClassRunner.class)
+public class PaybackBookKeeperModuleTest extends ConfiguredDatabaseTest {
 
-    // TODO #3 use internal configuration class to import required production configs and set up test data source
-    // TODO #4 enable property source based configuration to set up test data source utilizing META-INF/application.properties
 
+    @Autowired
     PaybackBookKeeper bookKeeper = null;
 
     String creditCardNumber = "1234123412341234";
@@ -34,11 +48,6 @@ public class PaybackBookKeeperModuleTest extends AbstractJUnit4SpringContextTest
 
     Purchase purchase = new Purchase(Money.of(EUR, 100L), creditCardNumber, merchantNumber, now());
 
-    @Before
-    public void setUp() {
-        // TODO #5 use annotation based field injections to deliver this test dependency from test context
-        bookKeeper = applicationContext.getBean("paybackBookKeeper", PaybackBookKeeper.class);
-    }
 
     @Test
     public void shouldThrowWhenAccountNotFound() {

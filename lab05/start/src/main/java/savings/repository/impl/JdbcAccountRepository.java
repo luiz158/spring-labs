@@ -10,20 +10,24 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.joda.money.Money;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import common.math.Percentage;
+import org.springframework.stereotype.Repository;
 import savings.model.Account;
 import savings.model.Objective;
 import savings.repository.AccountRepository;
 
 // TODO #1 mark as repository component
+@Repository
 public class JdbcAccountRepository implements AccountRepository {
+
 
     private DataSource dataSource;
 
-    // TODO #2 use constructor dependency injection instead
-    public void setDataSource(DataSource dataSource) {
+    @Autowired
+    public JdbcAccountRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
