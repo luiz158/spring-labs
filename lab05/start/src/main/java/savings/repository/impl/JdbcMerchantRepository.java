@@ -13,13 +13,16 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import common.math.Percentage;
+import org.springframework.stereotype.Repository;
 import savings.model.Merchant;
 import savings.repository.MerchantRepository;
 
 // TODO #1 mark as repository component
+@Repository
 public class JdbcMerchantRepository implements MerchantRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(JdbcMerchantRepository.class);
@@ -29,6 +32,7 @@ public class JdbcMerchantRepository implements MerchantRepository {
     private final Map<String, Merchant> cache = new HashMap<>();
 
     // TODO #2 use constructor dependency injection instead
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
