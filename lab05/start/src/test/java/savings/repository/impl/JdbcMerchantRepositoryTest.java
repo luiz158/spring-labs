@@ -36,7 +36,7 @@ public class JdbcMerchantRepositoryTest extends ConfiguredDatabaseTest {
     public void cleanUp(){
         repository.clearCache();
     }
-    
+
     @Test
     public void shouldThrowWhenMerchantNotFound() {
         catchException(repository, EmptyResultDataAccessException.class).findByNumber("111111111");
@@ -56,7 +56,7 @@ public class JdbcMerchantRepositoryTest extends ConfiguredDatabaseTest {
 
     @Test
     public void shouldClearCacheOnShutdown() {
-        repository.clearCache();
+        cleanUp();
 
         catchException(repository, EmptyResultDataAccessException.class).findByNumber("1234567890");
 
