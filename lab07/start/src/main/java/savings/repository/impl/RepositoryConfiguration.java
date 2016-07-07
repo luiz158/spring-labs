@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 // TODO #1 enable AspectJ based auto-proxy feature
 @Configuration
+@EnableAspectJAutoProxy
 @ComponentScan(basePackageClasses = RepositoryConfiguration.class, excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
 })

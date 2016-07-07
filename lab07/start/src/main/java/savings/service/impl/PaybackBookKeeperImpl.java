@@ -4,6 +4,7 @@ import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import savings.model.Account;
 import savings.model.AccountIncome;
 import savings.model.Merchant;
@@ -32,6 +33,7 @@ public class PaybackBookKeeperImpl implements PaybackBookKeeper {
     }
 
     // TODO #1 declare this method as transactional
+    @Transactional
     @Override
     public PaybackConfirmation registerPaybackFor(Purchase purchase) {
         Account account = accountRepository.findByCreditCard(purchase.getCreditCardNumber());
