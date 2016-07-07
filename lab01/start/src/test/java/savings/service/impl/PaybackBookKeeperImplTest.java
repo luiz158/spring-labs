@@ -67,13 +67,13 @@ public class PaybackBookKeeperImplTest {
         doAnswer(new Answer<PaybackConfirmation>() {
             @Override
             public PaybackConfirmation answer(InvocationOnMock invocation) throws Throwable {
-                return new PaybackConfirmation("1111", (AccountIncome) invocation.getArguments()[0]);
+                return new PaybackConfirmation("2222", (AccountIncome) invocation.getArguments()[0]);
             }
         }).when(paybackRepository).save(any(AccountIncome.class), same(purchase));
 
         PaybackConfirmation confirmation = bookKeeper.registerPaybackFor(purchase);
 
-        assertThat(confirmation.getNumber()).isEqualTo("1111");
+        assertThat(confirmation.getNumber()).isEqualTo("2222");
         assertThat(confirmation.getIncome().getAmount()).isEqualTo(Money.of(EUR, 6L));
         assertThat(confirmation.getIncome().getDistributions()).hasSize(2);
         assertThat(confirmation.getIncome().getDistribution("Glock").getAmount()).isEqualTo(Money.of(EUR, 3L));
