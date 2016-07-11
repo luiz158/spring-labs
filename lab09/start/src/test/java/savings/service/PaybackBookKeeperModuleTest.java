@@ -26,7 +26,6 @@ import savings.service.impl.ServiceConfiguration;
 
 import common.db.LocalDatabaseConfiguration;
 
-@Ignore // TODO #1 : remove after completion of all other tasks
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
     LocalDatabaseConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class

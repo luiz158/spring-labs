@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import savings.model.CreditCard;
 
-@Ignore
+
 public class CreditCardRepositoryTest extends BaseRepositoryTest {
 
     @Autowired
