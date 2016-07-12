@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @ComponentScan(basePackageClasses = RepositoryConfiguration.class, excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
 })
+@EnableAspectJAutoProxy
 public class RepositoryConfiguration {
 
     @Autowired

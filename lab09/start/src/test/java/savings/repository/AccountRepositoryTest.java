@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import savings.model.Account;
 
-@Ignore
+//@Ignore
 public class AccountRepositoryTest extends BaseRepositoryTest {
 
     @Autowired

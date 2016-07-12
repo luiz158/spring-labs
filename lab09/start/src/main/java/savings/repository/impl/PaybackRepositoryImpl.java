@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import savings.model.AccountIncome;
 import savings.model.PaybackConfirmation;
 import savings.model.Purchase;
+import savings.repository.PaybackRepositoryCustom;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import static org.joda.money.CurrencyUnit.EUR;
 import static org.joda.time.DateTime.now;
 
 @Repository
-public class PaybackRepositoryImpl {
+public class PaybackRepositoryImpl implements PaybackRepositoryCustom {
 
     private final JdbcTemplate jdbcTemplate;
 
