@@ -31,7 +31,8 @@ import savings.repository.PaybackRepository;
 import savings.repository.impl.RepositoryConfiguration;
 import savings.service.impl.ServiceConfiguration;
 
-@Ignore // FIXME
+
+@Ignore //TODO NAPRAWIC
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class PaybackBookKeeperTransactionTest {
