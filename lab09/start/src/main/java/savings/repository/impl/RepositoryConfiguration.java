@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -32,6 +33,7 @@ import common.hibernate.SmartHibernatePersistenceProvider;
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 // TODO #1: Enable Spring Data Repositories detection in 'savings.repository' package
+@EnableJpaRepositories(basePackages = "savings.repository")
 public class RepositoryConfiguration {
 
     @Autowired

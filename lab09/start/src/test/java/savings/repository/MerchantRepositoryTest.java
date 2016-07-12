@@ -11,7 +11,7 @@ import savings.PaybackFixture;
 import savings.model.Merchant;
 import savings.model.PaybackPolicy;
 
-@Ignore
+
 public class MerchantRepositoryTest extends BaseRepositoryTest {
 
     @Autowired
