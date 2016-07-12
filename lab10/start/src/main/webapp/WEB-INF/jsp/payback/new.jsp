@@ -14,12 +14,15 @@
                action="${formUrl}"
                commandName="purchaseForm">
         <%--TODO #1 add errors field for 'creditCardNumber' field--%>
+        <form:errors path="creditCardNumber"/>
         <form:label path="creditCardNumber">Credit card number:</form:label>
         <form:input path="creditCardNumber"/>
         <%--TODO #2 add errors field for 'merchantNumber' field--%>
+        <form:errors path="merchantNumber"/>
         <form:label path="merchantNumber">Merchant number:</form:label>
         <form:input path="merchantNumber"/>
         <%--TODO #3 add errors field for 'transactionValue' field--%>
+        <form:errors path="transactionValue"/>
         <form:label path="transactionValue">Transaction value:</form:label>
         <form:input path="transactionValue"/>
 
