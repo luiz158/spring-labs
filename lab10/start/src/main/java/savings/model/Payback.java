@@ -10,6 +10,7 @@ import javax.persistence.UniqueConstraint;
 import org.joda.money.Money;
 import org.joda.time.DateTime;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(uniqueConstraints = {
@@ -22,6 +23,7 @@ public class Payback extends AbstractPersistable<Long> {
     private Money amount;
 
     // TODO #1 add DateTimeFormat to this field for proper formatting
+    @DateTimeFormat
     private DateTime date;
 
     @ManyToOne

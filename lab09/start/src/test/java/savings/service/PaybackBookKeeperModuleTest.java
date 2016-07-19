@@ -9,12 +9,18 @@ import static savings.PaybackFixture.creditCardNumber;
 import static savings.PaybackFixture.merchantNumber;
 import static savings.PaybackFixture.purchase;
 
+import common.sql.TestDataSourceFactory;
 import org.joda.money.Money;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,13 +32,17 @@ import savings.service.impl.ServiceConfiguration;
 
 import common.db.LocalDatabaseConfiguration;
 
+import javax.sql.DataSource;
+
 // TODO #1 : remove after completion of all other tasks
+@ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
     LocalDatabaseConfiguration.class, RepositoryConfiguration.class, ServiceConfiguration.class
 })
 @Transactional
 public class PaybackBookKeeperModuleTest {
+
 
     @Autowired
     PaybackBookKeeper bookKeeper;

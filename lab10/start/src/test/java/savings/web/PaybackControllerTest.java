@@ -40,7 +40,7 @@ import static savings.PaybackFixture.merchantNumber;
 /**
  * This test presents how to test MVC controllers logic utilizing minimized Spring ApplicationContext.
  */
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 @WebAppConfiguration

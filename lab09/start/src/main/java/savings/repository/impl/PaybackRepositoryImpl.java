@@ -2,6 +2,7 @@ package savings.repository.impl;
 
 import org.joda.money.Money;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,7 @@ import static org.joda.money.CurrencyUnit.EUR;
 import static org.joda.time.DateTime.now;
 
 @Repository
+@Profile("dev")
 public class PaybackRepositoryImpl implements PaybackRepositoryCustom {
 
     private final JdbcTemplate jdbcTemplate;
